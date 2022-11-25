@@ -5,16 +5,6 @@ const initialState = {
   selectedSubreddit: null
 }
 
-// export const addQuizAndQuizId = (quiz) => {
-//   return (dispatch) => {
-//     dispatch(addQuiz(quiz));
-//     dispatch(addQuizIdToTopic({
-//       quizId: quiz.id,
-//       topicId: quiz.topicId
-//     }));
-//   } 
-// };
-
 const filterSlice = createSlice({
   name: 'filter',
   initialState: initialState,
