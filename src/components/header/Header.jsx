@@ -12,15 +12,15 @@ function Header() {
 
   return (
     <header>
-      <div class='logo'>
-        <div class='logo-image'>
-          <img src={logo}/>
+      <div className='logo'>
+        <div className='logo-image'>
+          <img src={logo} alt='Reddit logo'/>
         </div>
-        <div class='logo-text'>
-          <span>Tiny</span><span class='orange'>Reddit</span>
+        <div className='logo-text'>
+          <span>Tiny</span><span className='orange'>Reddit</span>
         </div>
       </div>
-      <div class='search'>
+      <div className='search'>
         <input id='search-box' placeholder="Search..." onChange={handleTermChange}/>
       </div>
     </header>
