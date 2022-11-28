@@ -1,0 +1,4 @@
+.posts {
+  position: relative;
+  top: 3rem; /* To offset for fixed header. */
+}
