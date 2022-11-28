@@ -1,4 +1,64 @@
 .posts {
   position: relative;
   top: 3rem; /* To offset for fixed header. */
+  font-family: 'Montserrat', serif;
+  font-size: 0.8rem;
+}
+
+.post-data {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+}
+
+.subreddit-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.subreddit-logo-container img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px black solid;
+}
+
+.subreddit-text {
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
+
+.user-text {
+  padding: 0 0.5rem;
+}
+
+.post-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  font-family: 'Lora', serif;
+  text-align: left;
+  padding: 0 0.5rem;
+}
+
+.post-image-container {
+  width: 100%;
+  height: auto;
+  margin: 0.5rem auto 0.2rem;
+  overflow: hidden;
+}
+
+.post-image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post-space {
+  height: 0.5rem;
+  background-color: rgb(231, 231, 231);
+  border-top: 1px solid rgb(187, 187, 187);
+  border-bottom: 1px solid rgb(212, 212, 212);
 }

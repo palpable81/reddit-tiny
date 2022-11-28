@@ -1,15 +1,13 @@
 import './posts.css';
+import Post from './Post';
 
 function Posts() {
-  // const dispatch = useDispatch();
-
-  // const handleTermChange = ({target}) => {
-  //   dispatch(setSearchTerm(target.value));
-  // }
-
   return (
       <div className='posts'>
-        Temp text
+        <Post />
+        <Post />
+        <Post />
+        <Post />
       </div>
   );
 }
