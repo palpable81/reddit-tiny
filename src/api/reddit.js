@@ -26,8 +26,22 @@ export const getPosts = async (subreddit) => {
       subredditId: post.data.subreddit_id,
       isImage: isImage(post.data.url),
       url: post.data.url
-    }
-  ));
+    }));
+  }
+}
+
+export const getSubreddits = async () => {
+  const url = `${BASE_URL}/subreddits.json`;
+  const response = await fetch(url);
+  if(response.ok) {
+    const json = await response.json();
+
+    return json.data.children.map((subreddit) => ({
+      title: subreddit.data.title,
+      displayName: subreddit.data.display_name,
+      iconUrl: subreddit.data.icon_img,
+      id: subreddit.data.id 
+    }));
   }
 }
 

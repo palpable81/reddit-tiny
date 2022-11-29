@@ -1,6 +1,6 @@
-import { getPosts, DEFAULT_SUBREDDIT } from './reddit.js';
+import { getPosts, getSubreddits, DEFAULT_SUBREDDIT } from './reddit.js';
 
-const mockFetchResponse = { 
+const mockFetchPostsResponse = { 
   data: {
     children: [
       {
@@ -23,7 +23,29 @@ const mockFetchResponse = {
           subreddit: 'r/CrazyFuckingVideos',
           subreddit_id: 't5_45hae8',
           url: 'https://v.redd.it/7n3kfa8cbq2a1'
-        },
+        }
+      }
+    ]
+  }
+}
+const mockFetchSubredditsResponse = { 
+  data: {
+    children: [
+      {
+        data: {
+          icon_img: "",
+          title: "Home",
+          display_name: "Home",
+          id: "2qs0k",
+        }
+      },
+      {
+        data: {
+          icon_img: "https://b.thumbs.redditmedia.com/EndDxMGB-FTZ2MGtjepQ06cQEkZw_YQAsOUudpb9nSQ.png",
+          title: "Ask Reddit...",
+          display_name: "AskReddit",
+          id: "2qh1i",
+        }
       }
     ]
   }
@@ -35,11 +57,11 @@ beforeEach(() => {
 
 test('fetches posts from subreddit', async () => {
   const subreddit = 'CFB';
-  fetch.mockResponseOnce(JSON.stringify(mockFetchResponse));
+  fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
 
-  const response = await getPosts(subreddit);
+  const actual = await getPosts(subreddit);
 
-  expect(response.length).toBe(2);
+  expect(actual.length).toBe(2);
   expect(fetch).toHaveBeenCalledWith(
     expect.stringContaining(subreddit)
   );
@@ -47,12 +69,20 @@ test('fetches posts from subreddit', async () => {
 
 test('fetches posts from default', async () => {
   const subreddit = '';
-  fetch.mockResponseOnce(JSON.stringify(mockFetchResponse));
+  fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
 
-  const response = await getPosts(subreddit);
+  const actual = await getPosts(subreddit);
 
-  expect(response.length).toBe(2);
+  expect(actual.length).toBe(2);
   expect(fetch).toHaveBeenCalledWith(
     expect.stringContaining(DEFAULT_SUBREDDIT)
   );
+});
+
+test('fetches subreddits', async () => {
+  fetch.mockResponseOnce(JSON.stringify(mockFetchSubredditsResponse));
+
+  const response = await getSubreddits();
+
+  expect(response.length).toBe(2);
 });
