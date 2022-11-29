@@ -1,23 +1,18 @@
-import { setSelectedSubreddit } from "../../features/filter/filterSlice";
 import './posts.css'
 
-function Post() {
-  // const dispatch = useDispatch();
+function Post(props) {
 
-  // const handleTermChange = ({target}) => {
-  //   dispatch(setSearchTerm(target.value));
-  // }
-
-  //test data - needs to use real data eventually!
+  //need to pull subreddit logo from slice
   const subredditUrl = 'https://b.thumbs.redditmedia.com/EndDxMGB-FTZ2MGtjepQ06cQEkZw_YQAsOUudpb9nSQ.png';
-  const image = 'https://i.redd.it/5kazf35lap1a1.jpg'
   const post = {
-    subredditLogo: subredditUrl,
-    subreddit: 'r/Subreddit',
-    author: 'u/user',
-    karma: '13k',
-    title: "German football team covers their mouths at their first game in Qatar",
-    image: image
+    ...props.post,
+    subredditLogo: subredditUrl
+  };
+
+  const renderImage = () => {
+    if(post.isImage) {
+      return <img src={post.url} alt='Post' />;
+    }
   }
 
   return (
@@ -28,8 +23,8 @@ function Post() {
               <img src={post.subredditLogo} alt='Subreddit Logo' />
             </div>
             <div>
-              <span className='subreddit-text'>{post.subreddit}</span>● 
-              <span className='user-text'>{post.author}</span>
+              <span className='subreddit-text'>r/{post.subreddit}</span>● 
+              <span className='user-text'>u/{post.author}</span>
             </div>
           </div>
           <div className='karma-text'>
@@ -40,7 +35,7 @@ function Post() {
           {post.title}
         </div>
         <div className='post-image-container'>
-          <img src={post.image} alt='Post Image' />
+            { renderImage() }
         </div>
         <div className='post-space'></div>
       </div>
