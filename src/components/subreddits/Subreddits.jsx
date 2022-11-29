@@ -4,7 +4,7 @@ import { selectSubreddits, fetchSubreddits } from '../../features/subreddits/sub
 
 function Subreddits() {
 
-  const posts = useSelector(selectSubreddits);
+  const subreddits = useSelector(selectSubreddits);
   const dispatch = useDispatch();
 
   useEffect(() => {
