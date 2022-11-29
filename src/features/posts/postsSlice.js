@@ -21,7 +21,6 @@ export const { setPosts } = postsSlice.actions;
 export const fetchPosts = (subreddit) => async (dispatch) => {
   try {
     const posts = await getPosts(subreddit);
-    console.log(posts);
     dispatch(setPosts(posts));
   } catch (error) {
     console.log(error);
