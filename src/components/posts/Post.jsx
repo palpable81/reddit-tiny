@@ -14,7 +14,7 @@ function Post() {
   const post = {
     subredditLogo: subredditUrl,
     subreddit: 'r/Subreddit',
-    user: 'u/user',
+    author: 'u/user',
     karma: '13k',
     title: "German football team covers their mouths at their first game in Qatar",
     image: image
@@ -29,7 +29,7 @@ function Post() {
             </div>
             <div>
               <span className='subreddit-text'>{post.subreddit}</span>● 
-              <span className='user-text'>{post.user}</span>
+              <span className='user-text'>{post.author}</span>
             </div>
           </div>
           <div className='karma-text'>
