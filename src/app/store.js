@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import filterReducer from '../features/filter/filterSlice';
-//import quizzesReducer from '../features/quizzes/quizzesSlice';
-//import cardsReducer from '../features/cards/cardsSlice';
+import postsReducer from '../features/posts/postsSlice';
 
 export default configureStore({
   reducer: {
     filter: filterReducer,
-    //quizzes: quizzesReducer,
+    posts: postsReducer,
     //cards: cardsReducer
   },
 });
