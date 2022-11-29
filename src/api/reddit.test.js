@@ -1,4 +1,4 @@
-import Reddit from './reddit.mjs';
+import { getPosts } from './reddit.js';
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -24,7 +24,7 @@ test('fetches posts from subreddit', async () => {
     }
   }));
 
-  const response = await Reddit.getPosts(subreddit);
+  const response = await getPosts(subreddit);
 
   expect(response.length).toBe(1);
   expect(fetch).toHaveBeenCalledWith(
@@ -32,7 +32,7 @@ test('fetches posts from subreddit', async () => {
   );
 });
 
-test('fetches posts from popular by default', async () => {
+test('fetches posts from pics by default', async () => {
   const subreddit = '';
   fetch.mockResponseOnce(JSON.stringify({ 
     data: {
@@ -63,10 +63,10 @@ test('fetches posts from popular by default', async () => {
     }
   }));
 
-  const response = await Reddit.getPosts(subreddit);
+  const response = await getPosts(subreddit);
 
   expect(response.length).toBe(2);
   expect(fetch).toHaveBeenCalledWith(
-    expect.stringContaining('popular')
+    expect.stringContaining('pics')
   );
 });
