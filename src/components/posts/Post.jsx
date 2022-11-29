@@ -1,4 +1,5 @@
 import './posts.css'
+import { addCommas } from '../../util/numberFormatter';
 
 function Post(props) {
 
@@ -28,7 +29,7 @@ function Post(props) {
             </div>
           </div>
           <div className='karma-text'>
-            {post.karma} karma
+            { addCommas(post.karma)} karma
           </div>
         </div>
         <div className='post-title'>
