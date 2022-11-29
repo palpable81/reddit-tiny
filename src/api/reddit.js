@@ -1,4 +1,5 @@
 const BASE_URL = 'https://www.reddit.com';
+export const DEFAULT_SUBREDDIT = 'pics'
 
 const isImage = (url) => {
   const regex = /.(jpg|png|gif)$/;
@@ -7,15 +8,16 @@ const isImage = (url) => {
 
 export const getPosts = async (subreddit) => {
 
-  //use pics subreddit as default
-  if(!subreddit || subreddit === '') {
-    subreddit = 'pics';
+  //use default if no subreddit provided
+  if(!subreddit) {
+    subreddit = DEFAULT_SUBREDDIT;
   }
-  const url = BASE_URL + '/r/' + subreddit + '.json';
+  const url = `${BASE_URL}/r/${subreddit}.json`;
   const response = await fetch(url);
-  const json = await response.json();
+  if(response.ok) {
+    const json = await response.json();
 
-  return json.data.children.map((post) => ({
+    return json.data.children.map((post) => ({
       id: post.data.id,
       title: post.data.title,
       karma: post.data.score,
@@ -26,5 +28,6 @@ export const getPosts = async (subreddit) => {
       url: post.data.url
     }
   ));
+  }
 }
 
