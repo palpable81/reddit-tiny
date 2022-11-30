@@ -4,10 +4,9 @@ import { addCommas } from '../../util/numberFormatter';
 function Post(props) {
 
   //need to pull subreddit logo from slice
-  const subredditUrl = 'https://b.thumbs.redditmedia.com/EndDxMGB-FTZ2MGtjepQ06cQEkZw_YQAsOUudpb9nSQ.png';
   const post = {
     ...props.post,
-    subredditLogo: subredditUrl
+    subredditLogo: props.subredditUrl
   };
 
   const renderImage = () => {

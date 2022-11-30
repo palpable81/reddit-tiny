@@ -23,7 +23,7 @@ export const getPosts = async (subreddit) => {
       karma: post.data.score,
       author: post.data.author,
       subreddit: post.data.subreddit,
-      subredditId: post.data.subreddit_id,
+      subredditId: post.data.subreddit_id.substring(3),
       isImage: isImage(post.data.url),
       url: post.data.url
     }));
