@@ -1,9 +1,9 @@
 import './posts.css'
 import { addCommas } from '../../util/numberFormatter';
+import defaultSubredditIcon from './default-subreddit-icon.png';
 
 function Post(props) {
 
-  //need to pull subreddit logo from slice
   const post = {
     ...props.post,
     subredditLogo: props.subredditUrl
@@ -20,7 +20,7 @@ function Post(props) {
         <div className='post-data'>
           <div className='subreddit-container'>
             <div className='subreddit-logo-container'>
-              <img src={post.subredditLogo} alt='Subreddit Logo' />
+              <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' />
             </div>
             <div>
               <span className='subreddit-text'>r/{post.subreddit}</span>● 

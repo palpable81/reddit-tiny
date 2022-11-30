@@ -19,7 +19,10 @@ function Posts() {
 
   const getSubredditUrl = (subredditId) => {
     const filteredSubreddits = subreddits.filter((subreddit) => subreddit.id === subredditId);
-    return filteredSubreddits[0].iconUrl;
+    if(filteredSubreddits.length > 0) {
+      return filteredSubreddits[0].iconUrl;
+    }
+    return '';
   }
 
   return (
