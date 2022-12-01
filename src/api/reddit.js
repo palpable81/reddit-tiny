@@ -25,7 +25,23 @@ export const getPosts = async (subreddit) => {
       subreddit: post.data.subreddit,
       subredditId: post.data.subreddit_id.substring(3),
       isImage: isImage(post.data.url),
-      url: post.data.url
+      url: post.data.url,
+      permalink: post.data.permalink
+    }));
+  }
+}
+
+export const getComments = async (post) => {
+  const url = `${BASE_URL}${post.permalink}.json`;
+  const response = await fetch(url);
+  if(response.ok) {
+    const json = await response.json();
+
+    return json[1].data.children.map((comment) => ({
+      id: comment.data.id,
+      postId: post.id,
+      author: comment.data.author,
+      body: comment.data.body
     }));
   }
 }

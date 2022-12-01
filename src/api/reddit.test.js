@@ -1,4 +1,4 @@
-import { getPosts, getSubreddits, DEFAULT_SUBREDDIT } from './reddit.js';
+import { getPosts, getSubreddits, getComments, DEFAULT_SUBREDDIT } from './reddit.js';
 
 const mockFetchPostsResponse = { 
   data: {
@@ -50,6 +50,29 @@ const mockFetchSubredditsResponse = {
     ]
   }
 }
+const mockFetchCommentsResponse = [
+  {},
+  {
+    "data": {
+      "children": [
+        {
+          "data": {
+            "id": "ixk5lz5",
+            "author": "Merari01",
+            "body": "Please keep in mind our subreddit's [case-specific rules](https://www.reddit.com/r/WhitePeopleTwitter/comments/z2shfr/the_shooter_is_nonbinary/) surrounding this tragedy.",
+          }
+        },
+        {
+          "data": {
+            "id": "ixjdfp8",
+            "author": "Grizzchops",
+            "body": "Stomped on by heels",
+          }
+        }
+      ]
+    }
+  }
+]
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -85,4 +108,22 @@ test('fetches subreddits', async () => {
   const response = await getSubreddits();
 
   expect(response.length).toBe(2);
+});
+
+test('fetches comments', async () => {
+  const postId = 'jk34j5';
+  const postPermalink = 'permalink';
+  const arg = {
+    id: postId,
+    permalink: postPermalink
+  };
+  fetch.mockResponseOnce(JSON.stringify(mockFetchCommentsResponse));
+
+  const response = await getComments(arg);
+
+  expect(response.length).toBe(2);
+  expect(response[0].postId).toBe(postId);
+  expect(fetch).toHaveBeenCalledWith(
+    expect.stringContaining(postPermalink)
+  );
 });
