@@ -2,13 +2,25 @@ import './posts.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPosts, fetchPosts } from '../../features/posts/postsSlice';
-import { selectSelectedSubreddit } from '../../features/filter/filterSlice';
+import { selectSelectedSubreddit, selectSearchTerm } from '../../features/filter/filterSlice';
 import { selectSubreddits } from '../../features/subreddits/subredditsSlice';
 import Post from './Post';
 
 function Posts() {
 
   const posts = useSelector(selectPosts);
+  let filteredPosts;
+  const searchTerm = useSelector(selectSearchTerm);
+
+  //filter posts based on search term
+  if(!searchTerm) {
+    filteredPosts = posts;
+  }
+  else {
+    filteredPosts = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
+
+
   const subreddits = useSelector(selectSubreddits);
   const selectedSubreddit = useSelector(selectSelectedSubreddit);
   const dispatch = useDispatch();
@@ -27,7 +39,7 @@ function Posts() {
 
   return (
       <div className='posts'>
-        { posts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)}
+        { filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)}
       </div>
   );
 }
