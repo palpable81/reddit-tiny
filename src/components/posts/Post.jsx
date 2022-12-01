@@ -1,4 +1,5 @@
 import './posts.css'
+import Comments from '../comments/Comments';
 import { addCommas } from '../../util/numberFormatter';
 import defaultSubredditIcon from './default-subreddit-icon.png';
 
@@ -37,6 +38,7 @@ function Post(props) {
         <div className='post-image-container'>
             { renderImage() }
         </div>
+        <Comments />
         <div className='post-space'></div>
       </div>
   );
