@@ -1,3 +1,5 @@
+import Comment from './Comment';
+
 function Comments() {
 
   // const posts = useSelector(selectPosts);
@@ -32,6 +34,11 @@ function Comments() {
   return (
       <div className='comments'>
         {/* { filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)} */}
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
       </div>
   );
 }
