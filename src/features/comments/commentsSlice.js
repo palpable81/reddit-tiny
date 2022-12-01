@@ -10,7 +10,7 @@ const commentsSlice = createSlice({
   initialState: initialState,
   reducers: {
     addComments: (state, action) => {
-      state.comments[action.payload.id] = action.payload;
+      state.comments[action.payload.postId] = action.payload.comments;
     },
   }
 });
@@ -21,7 +21,7 @@ export const { addComments } = commentsSlice.actions;
 export const fetchComments = (post) => async (dispatch) => {
   try {
     const comments = await getComments(post);
-    dispatch(addComments(comments));
+    dispatch(addComments({postId: post.id, comments: comments}));
   } catch (error) {
     console.log(error);
   }
