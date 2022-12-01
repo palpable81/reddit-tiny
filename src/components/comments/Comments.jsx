@@ -1,3 +1,4 @@
+import './comments.css';
 import Comment from './Comment';
 
 function Comments() {

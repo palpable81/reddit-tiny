@@ -10,10 +10,10 @@ function Comment() {
 
   return (
       <div className='comment'>
-        <div className='author'>
-          {comment.author}
+        <div className='comment-author'>
+          u/{comment.author}
         </div>
-        <div className='body'>
+        <div className='comment-body'>
           {comment.body}
         </div>
       </div>
