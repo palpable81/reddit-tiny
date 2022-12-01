@@ -105,9 +105,9 @@ test('fetches posts from default', async () => {
 test('fetches subreddits', async () => {
   fetch.mockResponseOnce(JSON.stringify(mockFetchSubredditsResponse));
 
-  const response = await getSubreddits();
+  const actual = await getSubreddits();
 
-  expect(response.length).toBe(2);
+  expect(actual.length).toBe(2);
 });
 
 test('fetches comments', async () => {
@@ -119,10 +119,10 @@ test('fetches comments', async () => {
   };
   fetch.mockResponseOnce(JSON.stringify(mockFetchCommentsResponse));
 
-  const response = await getComments(arg);
+  const actual = await getComments(arg);
 
-  expect(response.length).toBe(2);
-  expect(response[0].postId).toBe(postId);
+  expect(actual.length).toBe(2);
+  expect(actual[0].postId).toBe(postId);
   expect(fetch).toHaveBeenCalledWith(
     expect.stringContaining(postPermalink)
   );
