@@ -39,7 +39,6 @@ function Post(props) {
             { renderImage() }
         </div>
         <Comments />
-        <div className='post-space'></div>
       </div>
   );
 }
