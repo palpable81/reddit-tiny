@@ -1,28 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { selectComments, fetchComments, toggleComments } from '../../features/comments/commentsSlice';
+import { useDispatch } from 'react-redux';
+import { fetchComments, toggleComments } from '../../features/comments/commentsSlice';
 
-function CommentButton(props) {
+function CommentButton({post, isVisible, isLoading, isLoaded}) {
 
-  //const comments = useSelector(selectComments)[props.postId];
-  let isVisible, isLoading;
-  const comments = useSelector(selectComments)[props.post.id];
   const dispatch = useDispatch();
 
-  if(!comments) {
-    isVisible = false;
-    isLoading = false;
-  }
-  else {
-    isVisible = comments.isVisible;
-    isLoading = comments.isLoading;
-  }
-
   const handleOnClick = () => {
-    if(!comments) {
-      dispatch(fetchComments(props.post));
+    if(!isLoaded) {
+      dispatch(fetchComments(post));
     }
     else {
-      dispatch(toggleComments(props.post));
+      dispatch(toggleComments(post));
     }
   }
 
@@ -37,7 +25,7 @@ function CommentButton(props) {
     else {
       buttonText = "Show Top Comments";
     }
-    return <button onClick={handleOnClick}>{buttonText}</button>;
+    return <button onClick={handleOnClick} disabled={isLoading}>{buttonText}</button>;
   }
 
   return (
