@@ -1,5 +1,6 @@
 const BASE_URL = 'https://www.reddit.com';
-export const DEFAULT_SUBREDDIT = 'popular'
+export const DEFAULT_SUBREDDIT = 'popular';
+export const COMMENT_LIMIT = 5;
 
 const isImage = (url) => {
   const regex = /.(jpg|png|gif)$/;
@@ -36,8 +37,12 @@ export const getComments = async (post) => {
   const response = await fetch(url);
   if(response.ok) {
     const json = await response.json();
+    let comments = json[1].data.children;
+    if(comments.length > COMMENT_LIMIT) {
+      comments = comments.slice(0, COMMENT_LIMIT);
+    }
 
-    return json[1].data.children.map((comment) => ({
+    return comments.map((comment) => ({
       id: comment.data.id,
       postId: post.id,
       author: comment.data.author,

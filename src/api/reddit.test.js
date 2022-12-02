@@ -1,4 +1,5 @@
-import { getPosts, getSubreddits, getComments, DEFAULT_SUBREDDIT } from './reddit.js';
+import { getPosts, getSubreddits, getComments, DEFAULT_SUBREDDIT,
+        COMMENT_LIMIT } from './reddit.js';
 
 const mockFetchPostsResponse = { 
   data: {
@@ -50,11 +51,55 @@ const mockFetchSubredditsResponse = {
     ]
   }
 }
-const mockFetchCommentsResponse = [
+const mockFetch1CommentResponse = [
   {},
   {
     "data": {
       "children": [
+        {
+          "data": {
+            "id": "ixk5lz5",
+            "author": "Merari01",
+            "body": "Please keep in mind our subreddit's [case-specific rules](https://www.reddit.com/r/WhitePeopleTwitter/comments/z2shfr/the_shooter_is_nonbinary/) surrounding this tragedy.",
+          }
+        },
+      ]
+    }
+  }
+]
+const mockFetch6CommentsResponse = [
+  {},
+  {
+    "data": {
+      "children": [
+        {
+          "data": {
+            "id": "ixk5lz5",
+            "author": "Merari01",
+            "body": "Please keep in mind our subreddit's [case-specific rules](https://www.reddit.com/r/WhitePeopleTwitter/comments/z2shfr/the_shooter_is_nonbinary/) surrounding this tragedy.",
+          }
+        },
+        {
+          "data": {
+            "id": "ixjdfp8",
+            "author": "Grizzchops",
+            "body": "Stomped on by heels",
+          }
+        },
+        {
+          "data": {
+            "id": "ixk5lz5",
+            "author": "Merari01",
+            "body": "Please keep in mind our subreddit's [case-specific rules](https://www.reddit.com/r/WhitePeopleTwitter/comments/z2shfr/the_shooter_is_nonbinary/) surrounding this tragedy.",
+          }
+        },
+        {
+          "data": {
+            "id": "ixjdfp8",
+            "author": "Grizzchops",
+            "body": "Stomped on by heels",
+          }
+        },
         {
           "data": {
             "id": "ixk5lz5",
@@ -110,18 +155,36 @@ test('fetches subreddits', async () => {
   expect(actual.length).toBe(2);
 });
 
-test('fetches comments', async () => {
+test('fetches 1 comment', async () => {
   const postId = 'jk34j5';
   const postPermalink = 'permalink';
   const arg = {
     id: postId,
     permalink: postPermalink
   };
-  fetch.mockResponseOnce(JSON.stringify(mockFetchCommentsResponse));
+  fetch.mockResponseOnce(JSON.stringify(mockFetch1CommentResponse));
 
   const actual = await getComments(arg);
 
-  expect(actual.length).toBe(2);
+  expect(actual.length).toBe(1);
+  expect(actual[0].postId).toBe(postId);
+  expect(fetch).toHaveBeenCalledWith(
+    expect.stringContaining(postPermalink)
+  );
+});
+
+test('fetches comments up to limit only', async () => {
+  const postId = 'jk34j5';
+  const postPermalink = 'permalink';
+  const arg = {
+    id: postId,
+    permalink: postPermalink
+  };
+  fetch.mockResponseOnce(JSON.stringify(mockFetch6CommentsResponse));
+
+  const actual = await getComments(arg);
+
+  expect(actual.length).toBe(COMMENT_LIMIT);
   expect(actual[0].postId).toBe(postId);
   expect(fetch).toHaveBeenCalledWith(
     expect.stringContaining(postPermalink)
