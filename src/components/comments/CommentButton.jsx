@@ -14,7 +14,7 @@ function CommentButton(props) {
   }
   else {
     isVisible = comments.isVisible;
-    isLoading = comments.isloading;
+    isLoading = comments.isLoading;
   }
 
   const handleOnClick = () => {

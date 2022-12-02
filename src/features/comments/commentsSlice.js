@@ -37,9 +37,8 @@ export const { startAddComments, addCommentsSuccess, toggleComments } = comments
 export const fetchComments = (post) => async (dispatch) => {
   try {
     dispatch(startAddComments(post));
-    //const comments = await getComments(post);
-    //TO-DO: replace with real api call
-    const comments = [];
+    
+    const comments = await getComments(post);
 
     dispatch(addCommentsSuccess({post: post, comments: comments}));
   } catch (error) {

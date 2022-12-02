@@ -7,22 +7,22 @@ import CommentButton from './CommentButton';
 
 function Comments(props) {
 
-  const comments = useSelector(selectComments)[props.post.id];
+  let comments;
+  let commentsEntry = useSelector(selectComments)[props.post.id];
   let isVisible = false;
-  if(comments) {
-    isVisible = comments.isVisible;
+  if(commentsEntry) {
+    comments = commentsEntry.comments;
+    isVisible = commentsEntry.isVisible;
+  }
+  else {
+    comments = [];
   }
 
   return (
       <div className='comments'>
         <CommentButton post={props.post}/>
-        {/* { filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)} */}
         <div className='comment-container' hidden={!isVisible}>
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
+          { comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
         </div>
       </div>
   );
