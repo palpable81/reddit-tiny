@@ -38,7 +38,7 @@ function Post(props) {
         <div className='post-image-container'>
             { renderImage() }
         </div>
-        <Comments />
+        <Comments post={post}/>
       </div>
   );
 }

@@ -2,31 +2,51 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getComments } from '../../api/reddit.js';
 
 const initialState = {
-  comments: []
 };
 
 const commentsSlice = createSlice({
   name: 'comments',
   initialState: initialState,
   reducers: {
-    addComments: (state, action) => {
-      state.comments[action.payload.postId] = action.payload.comments;
+    startAddComments: (state, action) => {
+      state[action.payload.id] = {
+        comments: [],
+        isLoading: true,
+        isVisible: true
+      }
     },
+    addCommentsSuccess: (state, action) => {
+      state[action.payload.post.id] = {
+        comments: action.payload.comments,
+        isLoading: false,
+        isVisible: true
+      }
+    },
+    toggleComments: (state, action) => {
+      state[action.payload.id] = {
+        ...state[action.payload.id],
+        isVisible: !state[action.payload.id].isVisible
+      }
+    }
   }
 });
 
-export const { addComments } = commentsSlice.actions;
+export const { startAddComments, addCommentsSuccess, toggleComments } = commentsSlice.actions;
 
 // Redux Thunk to get comments from a post
 export const fetchComments = (post) => async (dispatch) => {
   try {
-    const comments = await getComments(post);
-    dispatch(addComments({postId: post.id, comments: comments}));
+    dispatch(startAddComments(post));
+    //const comments = await getComments(post);
+    //TO-DO: replace with real api call
+    const comments = [];
+
+    dispatch(addCommentsSuccess({post: post, comments: comments}));
   } catch (error) {
     console.log(error);
   }
 };
 
-export const selectComments = (state) => state.comments.comments;
+export const selectComments = (state) => state.comments;
 
 export default commentsSlice.reducer;
