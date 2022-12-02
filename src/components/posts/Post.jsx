@@ -10,9 +10,13 @@ function Post(props) {
     subredditLogo: props.subredditUrl
   };
 
-  const renderImage = () => {
+  const renderImageContainer = () => {
     if(post.isImage) {
-      return <img src={post.url} alt='Post' />;
+      return (
+        <div className='post-image-container'>
+          <img src={post.url} alt='Post' />
+        </div>
+      )
     }
   }
 
@@ -35,9 +39,7 @@ function Post(props) {
         <div className='post-title'>
           {post.title}
         </div>
-        <div className='post-image-container'>
-            { renderImage() }
-        </div>
+        { renderImageContainer() }
         <Comments post={post}/>
       </div>
   );

@@ -54,7 +54,7 @@
 .post-image-container {
   width: 100%;
   height: auto;
-  margin: 0.5rem auto 0.2rem;
+  margin: 0.5rem auto 0;
   overflow: hidden;
 }
 

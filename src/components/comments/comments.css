@@ -1,3 +1,22 @@
+.comment-button {
+  padding: 0.5rem 0;
+}
+
+.comment-button button {
+  border-radius: 5px;
+  background-color: #304075;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.comment-button button:hover {
+  background-color: #131f45;
+  cursor: pointer;
+}
+
 .comment {
   margin: 0.1rem 0.5rem;
   text-align: left;

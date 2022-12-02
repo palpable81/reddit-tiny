@@ -1,5 +1,5 @@
 const BASE_URL = 'https://www.reddit.com';
-export const DEFAULT_SUBREDDIT = 'pics'
+export const DEFAULT_SUBREDDIT = 'popular'
 
 const isImage = (url) => {
   const regex = /.(jpg|png|gif)$/;
