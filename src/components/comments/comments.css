@@ -4,16 +4,17 @@
 
 .comment-button button {
   border-radius: 5px;
-  background-color: #304075;
+  background-color: #131f45;
   color: white;
   font-weight: bold;
   font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
   font-family: 'Montserrat', sans-serif;
+  transition: 0.5s;
 }
 
 .comment-button button:hover {
-  background-color: #131f45;
+  background-color: #3b4b7f;
   cursor: pointer;
 }
 
