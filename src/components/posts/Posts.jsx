@@ -59,7 +59,6 @@ function Posts() {
 
   return (
       <div className='posts'>
-        <Post isSkeleton='true'/>
         {renderPosts()}
       </div>
   );
