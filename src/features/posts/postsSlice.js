@@ -14,8 +14,8 @@ const postsSlice = createSlice({
       state.posts = action.payload;
       state.isLoading = false;
     },
-    startGetPosts: (state, action) => {
-      state.posts = null;
+    startGetPosts: (state) => {
+      state.posts = [];
       state.isLoading = true;
     }
   }
@@ -26,7 +26,7 @@ export const { setPosts, startGetPosts } = postsSlice.actions;
 // Redux Thunk to get posts from a subreddit.
 export const fetchPosts = (subreddit) => async (dispatch) => {
   try {
-    dispatch(startGetPosts);
+    dispatch(startGetPosts());
     const posts = await getPosts(subreddit);
     dispatch(setPosts(posts));
   } catch (error) {
