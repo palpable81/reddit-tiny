@@ -1,4 +1,5 @@
 import './posts.css';
+import './posts-skeleton.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPosts, fetchPosts, selectIsLoading } from '../../features/posts/postsSlice';
@@ -38,10 +39,28 @@ function Posts() {
     return '';
   }
 
+  const renderPosts = () => {
+    if(isLoading) {
+      //render five empty posts for skeleton
+      return (
+        <div>
+          <Post isSkeleton='true'/>
+          <Post isSkeleton='true'/>
+          <Post isSkeleton='true'/>
+          <Post isSkeleton='true'/>
+          <Post isSkeleton='true'/>
+        </div>
+      )
+    }
+    else {
+      return filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>);
+    }
+  }
+
   return (
       <div className='posts'>
-        { isLoading ? <><Post /><Post /><Post /><Post /></> :
-          filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)}
+        <Post isSkeleton='true'/>
+        {renderPosts()}
       </div>
   );
 }

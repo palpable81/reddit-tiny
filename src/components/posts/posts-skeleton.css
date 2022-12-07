@@ -1,0 +1,25 @@
+.skeleton-subreddit-logo {
+  height: 30px !important;
+}
+
+.skeleton-subreddit {
+  width: 5rem !important;
+}
+
+.skeleton-author {
+  width: 8rem !important;
+}
+
+.skeleton-karma {
+  width: 5rem !important;
+}
+
+.skeleton-button-container {
+  display: inline-block;
+  margin: 0.5rem auto;
+  width: 9rem; 
+}
+
+.skeleton-button {
+  height: 1.5rem;
+}

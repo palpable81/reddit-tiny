@@ -1,5 +1,6 @@
-import './posts.css'
-import Skeleton from 'react-loading-skeleton'
+import './posts.css';
+import './posts-skeleton.css';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Comments from '../comments/Comments';
 import { addCommas } from '../../util/numberFormatter';
@@ -11,6 +12,7 @@ function Post(props) {
     ...props.post,
     subredditLogo: props.subredditUrl
   };
+  const isSkeleton = props.isSkeleton;
 
   const renderImageContainer = () => {
     if(post.isImage) {
@@ -24,28 +26,30 @@ function Post(props) {
 
   return (
       <div className='post'>
-        <div className='post-data'>
-          <div className='subreddit-container'>
-            <div className='subreddit-logo-container'>
-              {post.subreddit ? 
-                <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' /> :
-                <Skeleton inline='true' height='30px'/>}
+        <SkeletonTheme inline='true'>
+          <div className='post-data'>
+            <div className='subreddit-container'>
+              <div className='subreddit-logo-container'>
+                {!isSkeleton ? 
+                  <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' /> :
+                  <Skeleton className='skeleton-subreddit-logo' /> }
+              </div>
+              <div className='subreddit-author-container'>
+                <span className='subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-subreddit' />}</span>
+                {!isSkeleton && '●' }
+                <span className='author-text'>{!isSkeleton ? 'u/'+post.author : <Skeleton className='skeleton-author' />}</span>
+              </div>
             </div>
-            <div className='subreddit-user-text'>
-              <span className='subreddit-text'>{post.subreddit ? 'r/'+post.subreddit : <Skeleton inline='true' width='5rem'/>}</span>
-              {post.subreddit ? '●' : ''} 
-              <span className='user-text'>{post.author ? 'u/'+post.author : <Skeleton inline='true' width='8rem'/>}</span>
+            <div className='karma-text'>
+              { !isSkeleton ? addCommas(post.karma) + ' karma' : <Skeleton className='skeleton-karma' />}
             </div>
           </div>
-          <div className='karma-text'>
-            { post.karma ? addCommas(post.karma) + ' karma' : <Skeleton inline='true' width='5rem'/>}
+          <div className='post-title'>
+            {!isSkeleton ? post.title : <Skeleton count='2'/>}
           </div>
-        </div>
-        <div className='post-title'>
-          {post.title || <Skeleton count='2'/>}
-        </div>
-        { renderImageContainer() }
-        {post.title ? <Comments post={post}/> : <Skeleton height='1.5rem' width='9rem' containerClassName='skeleton-button'/>}
+          { renderImageContainer() }
+          {!isSkeleton ? <Comments post={post}/> : <Skeleton className='skeleton-button' containerClassName='skeleton-button-container' />}
+        </SkeletonTheme>
       </div>
   );
 }
