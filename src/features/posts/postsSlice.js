@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getPosts } from '../../api/reddit.js';
 
 const initialState = {
-  posts: []
+  posts: [],
+  isLoading: true
 };
 
 const postsSlice = createSlice({
@@ -11,6 +12,7 @@ const postsSlice = createSlice({
   reducers: {
     setPosts: (state, action) => {
       state.posts = action.payload;
+      state.isLoading = false
     },
   }
 });
