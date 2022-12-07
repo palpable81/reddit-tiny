@@ -34,6 +34,12 @@
   display: flex;
   align-items: center;
   align-content: center;
+  flex: 1;
+}
+
+.subreddit-logo-container {
+  height: 30px;
+  width: 30px;
 }
 
 .subreddit-logo-container img {
@@ -41,6 +47,11 @@
   width: 30px;
   border-radius: 50%;
   border: 1px black solid;
+}
+
+.subreddit-user-text {
+  flex: 1;
+  text-align: left;
 }
 
 .subreddit-text {
@@ -72,4 +83,9 @@
   height: auto;
   margin: auto;
   display: block;
+}
+
+.skeleton-button {
+  display: inline-block;
+  margin: 0.5rem auto;
 }

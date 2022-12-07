@@ -1,4 +1,6 @@
 import './posts.css'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import Comments from '../comments/Comments';
 import { addCommas } from '../../util/numberFormatter';
 import defaultSubredditIcon from './default-subreddit-icon.png';
@@ -25,22 +27,25 @@ function Post(props) {
         <div className='post-data'>
           <div className='subreddit-container'>
             <div className='subreddit-logo-container'>
-              <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' />
+              {post.subreddit ? 
+                <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' /> :
+                <Skeleton inline='true' height='30px'/>}
             </div>
-            <div>
-              <span className='subreddit-text'>r/{post.subreddit}</span>● 
-              <span className='user-text'>u/{post.author}</span>
+            <div className='subreddit-user-text'>
+              <span className='subreddit-text'>{post.subreddit ? 'r/'+post.subreddit : <Skeleton inline='true' width='5rem'/>}</span>
+              {post.subreddit ? '●' : ''} 
+              <span className='user-text'>{post.author ? 'u/'+post.author : <Skeleton inline='true' width='8rem'/>}</span>
             </div>
           </div>
           <div className='karma-text'>
-            { addCommas(post.karma)} karma
+            { post.karma ? addCommas(post.karma) + ' karma' : <Skeleton inline='true' width='5rem'/>}
           </div>
         </div>
         <div className='post-title'>
-          {post.title}
+          {post.title || <Skeleton count='2'/>}
         </div>
         { renderImageContainer() }
-        <Comments post={post}/>
+        {post.title ? <Comments post={post}/> : <Skeleton height='1.5rem' width='9rem' containerClassName='skeleton-button'/>}
       </div>
   );
 }

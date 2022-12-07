@@ -1,12 +1,14 @@
 import './posts.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectPosts, fetchPosts } from '../../features/posts/postsSlice';
+import { selectPosts, fetchPosts, selectIsLoading } from '../../features/posts/postsSlice';
 import { selectSelectedSubreddit, selectSearchTerm } from '../../features/filter/filterSlice';
 import { selectSubreddits } from '../../features/subreddits/subredditsSlice';
 import Post from './Post';
 
 function Posts() {
+
+  const isLoading = useSelector(selectIsLoading);
 
   const posts = useSelector(selectPosts);
   let filteredPosts;
@@ -19,7 +21,6 @@ function Posts() {
   else {
     filteredPosts = posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
   }
-
 
   const subreddits = useSelector(selectSubreddits);
   const selectedSubreddit = useSelector(selectSelectedSubreddit);
@@ -39,7 +40,8 @@ function Posts() {
 
   return (
       <div className='posts'>
-        { filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)}
+        { isLoading ? <><Post /><Post /><Post /><Post /></> :
+          filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>)}
       </div>
   );
 }
