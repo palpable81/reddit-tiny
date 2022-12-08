@@ -1,16 +1,21 @@
+import './comments-skeleton.css';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+
 function Comment(props) {
 
-  //TO-DO add real data
   const comment = props.comment;
+  const isSkeleton = props.isSkeleton;
 
   return (
       <div className='comment'>
-        <div className='comment-author'>
-          u/{comment.author}
-        </div>
-        <div className='comment-body'>
-          {comment.body}
-        </div>
+        <SkeletonTheme inline='true'>
+          <div className='comment-author'>
+            {!isSkeleton ? 'u/'+comment.author : <Skeleton className='skeleton-comment-author'/> }
+          </div>
+          <div className='comment-body'>
+            {!isSkeleton ? comment.body : <Skeleton count='2'/> }
+          </div>
+        </SkeletonTheme>
       </div>
   );
 }

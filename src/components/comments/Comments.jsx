@@ -21,11 +21,29 @@ function Comments(props) {
     isLoading = commentsEntry.isLoading;
   }
 
+  const renderComments = () => {
+    if(isLoading) {
+      //render five empty comments for skeleton
+      return (
+        <div>
+          <Comment isSkeleton='true'/>
+          <Comment isSkeleton='true'/>
+          <Comment isSkeleton='true'/>
+          <Comment isSkeleton='true'/>
+          <Comment isSkeleton='true'/>
+        </div>
+      )
+    } else {
+      return comments.map((comment) => <Comment comment={comment} key={comment.id} />);
+    }
+  }
+
   return (
       <div className='comments'>
         <CommentButton post={props.post} isVisible={isVisible} isLoading={isLoading} isLoaded={isLoaded}/>
         <div className='comment-container' hidden={!isVisible}>
-          { comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
+          {/* { comments.map((comment) => <Comment comment={comment} key={comment.id} />)} */}
+          {renderComments()}
         </div>
       </div>
   );
