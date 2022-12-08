@@ -2,5 +2,13 @@
   position: relative;
   top: 3rem; /* To offset for fixed header. */
   display: flex;
+  gap: 0.5rem;
+  background-color: rgb(231, 231, 231);
+}
+
+@media only screen and (min-width: 1024px) {
+  .content {
+    padding-top: 3rem;
+  }
 }
 
