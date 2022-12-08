@@ -47,7 +47,12 @@ header .logo {
 }
 
 .search {
-  padding-right: 2rem;
+  padding-right: 0.5rem;
+}
+
+.search input {
+  width: 100%;
+  box-sizing: border-box
 }
 
 #search-box {

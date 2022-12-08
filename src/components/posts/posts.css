@@ -66,10 +66,12 @@
 .post-subreddit-text {
   padding: 0 0.5rem;
   font-weight: bold;
+  display: inline-block;
 }
 
 .post-author-text {
   padding: 0 0.5rem;
+  display: inline-block;
 }
 
 .post-title {
