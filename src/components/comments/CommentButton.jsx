@@ -14,23 +14,23 @@ function CommentButton({post, isVisible, isLoading, isLoaded}) {
     }
   }
 
-  const renderButton = () => {
-    let buttonText;
+  const renderButtonText = () => {
     if(isLoading) {
-      buttonText = "Loading Comments...";
+      return "Loading Comments...";
     }
     else if(isVisible) {
-      buttonText = "Hide Comments";
+      return "Hide Comments";
     }
     else {
-      buttonText = "Show Top Comments";
+      return "Show Top Comments";
     }
-    return <button onClick={handleOnClick} disabled={isLoading}>{buttonText}</button>;
   }
 
   return (
       <div className='comment-button'>
-        {renderButton()}
+        <button onClick={handleOnClick} disabled={isLoading}>
+          {renderButtonText()}
+        </button>
       </div>
   );
 }
