@@ -1,4 +1,6 @@
+import './subreddits.css'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import defaultSubredditIcon from './default-subreddit-icon.png';
 
 function Subreddit(props) {
 
@@ -8,12 +10,16 @@ function Subreddit(props) {
   return (
       <div className='subreddit'>
         <SkeletonTheme inline='true'>
-          {/* <div className='comment-author'>
-            {!isSkeleton ? 'u/'+comment.author : <Skeleton className='skeleton-comment-author'/> }
-          </div>
-          <div className='comment-body'>
-            {!isSkeleton ? comment.body : <Skeleton count='2'/> }
-          </div> */}
+            <div className='subreddit-container'>
+              <div className='subreddit-logo-container'>
+                {!isSkeleton ? 
+                  <img src={subreddit.iconUrl || defaultSubredditIcon} alt='Subreddit Logo' /> :
+                  <Skeleton className='skeleton-subreddit-logo' /> }
+              </div>
+              <div className='subreddit-text-container'>
+                <span className='subreddit-text'>{!isSkeleton ? 'r/'+subreddit.displayName : <Skeleton className='skeleton-subreddit' />}</span>
+              </div>
+            </div>
         </SkeletonTheme>
       </div>
   );
