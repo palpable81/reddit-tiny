@@ -1,0 +1,37 @@
+.subreddits {
+  position: relative;
+  top: 3rem; /* To offset for fixed header. */
+  font-family: 'Montserrat', serif;
+  font-size: 0.8rem;
+  background-color: rgb(231, 231, 231);
+  width: 15rem;
+}
+
+.subreddit-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex: 1;
+}
+
+.subreddit-logo-container {
+  height: 20px;
+  width: 20px;
+}
+
+.subreddit-logo-container img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px black solid;
+}
+
+.subreddit-text-container {
+  flex: 1;
+  text-align: left;
+}
+
+.subreddit-text {
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
