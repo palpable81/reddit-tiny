@@ -41,7 +41,7 @@ function Comments(props) {
   return (
       <div className='comments'>
         <CommentButton post={props.post} isVisible={isVisible} isLoading={isLoading} isLoaded={isLoaded}/>
-        <div className='comment-container' hidden={!isVisible}>
+        <div className={isVisible ? 'comment-container' : 'comment-container hidden'} >
           {renderComments()}
         </div>
       </div>
