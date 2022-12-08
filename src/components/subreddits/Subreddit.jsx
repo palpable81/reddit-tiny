@@ -8,20 +8,18 @@ function Subreddit(props) {
   const isSkeleton = props.isSkeleton;
 
   return (
-      <div className='subreddit'>
-        <SkeletonTheme inline='true'>
-            <div className='subreddit-container'>
-              <div className='subreddit-logo-container'>
-                {!isSkeleton ? 
-                  <img src={subreddit.iconUrl || defaultSubredditIcon} alt='Subreddit Logo' /> :
-                  <Skeleton className='skeleton-subreddit-logo' /> }
-              </div>
-              <div className='subreddit-text-container'>
-                <span className='subreddit-text'>{!isSkeleton ? 'r/'+subreddit.displayName : <Skeleton className='skeleton-subreddit' />}</span>
-              </div>
-            </div>
-        </SkeletonTheme>
-      </div>
+    <SkeletonTheme inline='true'>
+        <div className='subreddit-container'>
+          <div className='subreddit-logo-container'>
+            {!isSkeleton ? 
+              <img src={subreddit.iconUrl || defaultSubredditIcon} alt='Subreddit Logo' /> :
+              <Skeleton className='skeleton-subreddit-logo' /> }
+          </div>
+          <div className='subreddit-text-container'>
+            <span className='subreddit-text'>{!isSkeleton ? 'r/'+subreddit.displayName : <Skeleton className='skeleton-subreddit' />}</span>
+          </div>
+        </div>
+    </SkeletonTheme>
   );
 }
 

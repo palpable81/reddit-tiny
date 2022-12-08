@@ -33,7 +33,9 @@ function Subreddits() {
 
   return (
       <div className='subreddits'>
-        {renderSubreddits()}
+        <div className='subreddit-content'>
+          {renderSubreddits()}
+        </div>
       </div>
   );
 }
