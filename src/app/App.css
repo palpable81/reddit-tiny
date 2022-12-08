@@ -3,7 +3,7 @@
   top: 3rem; /* To offset for fixed header. */
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 4%;
   background-color: rgb(231, 231, 231);
 }
 
