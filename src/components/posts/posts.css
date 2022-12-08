@@ -38,36 +38,36 @@
   padding: 0.5rem 0.5rem 0.2rem 0.5rem;
 }
 
-.subreddit-container {
+.post-subreddit-container {
   display: flex;
   align-items: center;
   align-content: center;
   flex: 1;
 }
 
-.subreddit-logo-container {
+.post-subreddit-logo-container {
   height: 30px;
   width: 30px;
 }
 
-.subreddit-logo-container img {
+.post-subreddit-logo-container img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
   border: 1px black solid;
 }
 
-.subreddit-author-container {
+.post-subreddit-author-container {
   flex: 1;
   text-align: left;
 }
 
-.subreddit-text {
+.post-subreddit-text {
   padding: 0 0.5rem;
   font-weight: bold;
 }
 
-.author-text {
+.post-author-text {
   padding: 0 0.5rem;
 }
 

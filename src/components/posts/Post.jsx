@@ -28,19 +28,19 @@ function Post(props) {
       <div className='post'>
         <SkeletonTheme inline='true'>
           <div className='post-data'>
-            <div className='subreddit-container'>
-              <div className='subreddit-logo-container'>
+            <div className='post-subreddit-container'>
+              <div className='post-subreddit-logo-container'>
                 {!isSkeleton ? 
                   <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' /> :
                   <Skeleton className='skeleton-subreddit-logo' /> }
               </div>
-              <div className='subreddit-author-container'>
-                <span className='subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-subreddit' />}</span>
+              <div className='post-subreddit-author-container'>
+                <span className='post-subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-subreddit' />}</span>
                 {!isSkeleton && '●' }
-                <span className='author-text'>{!isSkeleton ? 'u/'+post.author : <Skeleton className='skeleton-author' />}</span>
+                <span className='post-author-text'>{!isSkeleton ? 'u/'+post.author : <Skeleton className='skeleton-author' />}</span>
               </div>
             </div>
-            <div className='karma-text'>
+            <div className='post-karma-text'>
               { !isSkeleton ? addCommas(post.karma) + ' karma' : <Skeleton className='skeleton-karma' />}
             </div>
           </div>
