@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getSubreddits } from '../../api/reddit.js';
 
 const initialState = {
-  subreddits: []
+  subreddits: [],
+  isLoading: false
 };
 
 const subredditsSlice = createSlice({
@@ -28,5 +29,6 @@ export const fetchSubreddits = () => async (dispatch) => {
 };
 
 export const selectSubreddits = (state) => state.subreddits.subreddits;
+export const selectIsLoading = (state) => state.subreddits.isLoading;
 
 export default subredditsSlice.reducer;
