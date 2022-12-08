@@ -52,6 +52,12 @@ function Posts() {
         </div>
       )
     }
+    else if(filteredPosts.length === 0) {
+      return (<div className='no-matches-text'>
+                <h2>No matching posts</h2>
+              </div>
+      );
+    }
     else {
       return filteredPosts.map((post) => <Post post={post} key={post.id} subredditUrl={getSubredditUrl(post.subredditId)}/>);
     }

@@ -6,6 +6,14 @@
   background-color: rgb(231, 231, 231);
 }
 
+.no-matches-text {
+  padding: 0.5rem;
+}
+
+.no-matches-text h2 {
+  margin: 0;
+}
+
 .post {
   border-bottom: 1px solid rgb(187, 187, 187);
   border-top: 1px solid rgb(212, 212, 212);
