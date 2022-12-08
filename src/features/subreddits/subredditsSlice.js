@@ -10,17 +10,22 @@ const subredditsSlice = createSlice({
   name: 'subreddits',
   initialState: initialState,
   reducers: {
+    startGetSubreddits: (state) => {
+      state.isLoading = true;
+    },
     setSubreddits: (state, action) => {
       state.subreddits = action.payload;
+      state.isLoading = false;
     },
   }
 });
 
-export const { setSubreddits } = subredditsSlice.actions;
+export const { startGetSubreddits, setSubreddits } = subredditsSlice.actions;
 
 // Redux Thunk to get subreddits.
 export const fetchSubreddits = () => async (dispatch) => {
   try {
+    dispatch(startGetSubreddits());
     const subreddits = await getSubreddits();
     dispatch(setSubreddits(subreddits));
   } catch (error) {
