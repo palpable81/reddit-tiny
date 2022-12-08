@@ -4,7 +4,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Comments from '../comments/Comments';
 import { addCommas } from '../../util/numberFormatter';
-import defaultSubredditIcon from './default-subreddit-icon.png';
+import defaultSubredditIcon from '../subreddits/default-subreddit-icon.png';
 
 function Post(props) {
 
