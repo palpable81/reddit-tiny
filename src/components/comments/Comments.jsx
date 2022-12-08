@@ -7,7 +7,7 @@ import CommentButton from './CommentButton';
 
 function Comments(props) {
 
-  let comments = [];;
+  let comments = [];
   let commentsEntry = useSelector(selectComments)[props.post.id];
   let isVisible = false;
   let isLoading = false;
