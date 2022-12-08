@@ -1,9 +1,8 @@
 .posts {
-  position: relative;
-  top: 3rem; /* To offset for fixed header. */
   font-family: 'Montserrat', serif;
   font-size: 0.8rem;
   background-color: rgb(231, 231, 231);
+  flex: 1;
 }
 
 .no-matches-text {

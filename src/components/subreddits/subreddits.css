@@ -1,10 +1,14 @@
 .subreddits {
-  position: relative;
-  top: 3rem; /* To offset for fixed header. */
   font-family: 'Montserrat', serif;
   font-size: 0.8rem;
   background-color: rgb(231, 231, 231);
   width: 15rem;
+}
+
+@media only screen and (max-width: 640px) {
+  .subreddits {
+    display: none;
+  }
 }
 
 .subreddit-container {

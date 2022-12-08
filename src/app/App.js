@@ -7,8 +7,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Posts />
-      <Subreddits />
+      <div className='content'>
+        <Subreddits />
+        <Posts />
+      </div>
     </div>
   );
 }
