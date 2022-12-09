@@ -24,6 +24,10 @@
 }
 
 @media only screen and (min-width: 640px) {
+  .posts {
+    width: 70%;
+  }
+
   .post {
     border-left: 1px solid rgb(212, 212, 212);
     border-right: 1px solid rgb(187, 187, 187);

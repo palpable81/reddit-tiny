@@ -17,7 +17,7 @@ function Subreddits() {
     if(isLoading) {
       //render five empty posts for skeleton
       return (
-        <div>
+        <div className='subreddit-content'>
           <Subreddit isSkeleton='true'/>
           <Subreddit isSkeleton='true'/>
           <Subreddit isSkeleton='true'/>
@@ -27,15 +27,20 @@ function Subreddits() {
       )
     }
     else {
-      return subreddits.map((subreddit) => <Subreddit subreddit={subreddit} key={subreddit.id} />);
+      return (
+        <div className='subreddit-content'>
+          {subreddits.map((subreddit) => <Subreddit subreddit={subreddit} key={subreddit.id} />)}
+        </div>
+      );
     }
   }
 
   return (
       <div className='subreddits'>
-        <div className='subreddit-content'>
-          {renderSubreddits()}
+        <div className='no-matches-text'>
+          <h2>Subreddits</h2>
         </div>
+        {renderSubreddits()}
       </div>
   );
 }
