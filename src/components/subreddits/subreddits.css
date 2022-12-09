@@ -56,10 +56,21 @@
   touch-action: manipulation;
   margin: 0.5rem 0.5rem;
   font-family: 'Montserrat', serif;
+  transition: 0.5s;
+}
+
+.subreddit-button.selected {
+  background-color: #304075;
+  color: #FFFFFF;
+
 }
 
 .subreddit-button:hover {
-  background-color: rgb(249,250,251);
+  background-color: rgb(201, 221, 241);
+}
+
+.subreddit-button.selected:hover {
+  background-color: #304075;
 }
 
 .subreddit-button:focus {

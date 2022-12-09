@@ -1,10 +1,12 @@
 import './subreddits.css'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import { useDispatch } from 'react-redux';
-import { setSelectedSubreddit } from '../../features/filter/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedSubreddit, selectSelectedSubreddit } from '../../features/filter/filterSlice';
 import defaultSubredditIcon from './default-subreddit-icon.png';
 
 function Subreddit(props) {
+
+  const selectedSubreddit = useSelector(selectSelectedSubreddit);
 
   const subreddit = props.subreddit;
   const isSkeleton = props.isSkeleton;
@@ -17,7 +19,7 @@ function Subreddit(props) {
 
   return (
     <SkeletonTheme inline='true'>
-      <button className='subreddit-button' onClick={handleOnClick}>
+      <button className={!isSkeleton && selectedSubreddit === subreddit.displayName ? 'subreddit-button selected' : 'subreddit-button'} onClick={handleOnClick}>
         <div className='subreddit-logo-container'>
           {!isSkeleton ? 
             <img src={subreddit.iconUrl || defaultSubredditIcon} alt='Subreddit Logo' /> :
