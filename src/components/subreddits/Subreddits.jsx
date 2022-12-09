@@ -16,14 +16,14 @@ function Subreddits() {
 
   const renderSubreddits = () => {
     if(isLoading) {
-      //render five empty posts for skeleton
+      //render 20 empty subreddits for skeleton
+      const skeletons = [];
+      for (let i = 0; i < 20; i++) {
+        skeletons.push(<Subreddit isSkeleton='true' />);
+      }
       return (
         <div className='subreddit-content'>
-          <Subreddit isSkeleton='true'/>
-          <Subreddit isSkeleton='true'/>
-          <Subreddit isSkeleton='true'/>
-          <Subreddit isSkeleton='true'/>
-          <Subreddit isSkeleton='true'/>
+          {skeletons}
         </div>
       )
     }

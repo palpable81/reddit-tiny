@@ -1,4 +1,5 @@
 import './subreddits.css'
+import './subreddits-skeleton.css'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedSubreddit, selectSelectedSubreddit } from '../../features/filter/filterSlice';
