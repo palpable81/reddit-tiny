@@ -32,10 +32,10 @@ function Post(props) {
               <div className='post-subreddit-logo-container'>
                 {!isSkeleton ? 
                   <img src={post.subredditLogo || defaultSubredditIcon} alt='Subreddit Logo' /> :
-                  <Skeleton className='skeleton-subreddit-logo' /> }
+                  <Skeleton className='skeleton-post-subreddit-logo' /> }
               </div>
               <div className='post-subreddit-author-container'>
-                <span className='post-subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-subreddit' />}</span>
+                <span className='post-subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-post-subreddit' />}</span>
                 {!isSkeleton && '●' }
                 <span className='post-author-text'>{!isSkeleton ? 'u/'+post.author : <Skeleton className='skeleton-author' />}</span>
               </div>
