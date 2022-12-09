@@ -32,7 +32,7 @@
   display: flex;
   flex-wrap: wrap;
   width: auto;
-  justify-content: space-evenly;
+  justify-content: center;
   /* border-left: 1px solid rgb(212, 212, 212);
   border-bottom: 1px solid rgb(187, 187, 187); */
 }

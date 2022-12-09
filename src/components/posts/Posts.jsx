@@ -66,7 +66,7 @@ function Posts() {
   return (
       <div className='posts'>
         <div className='posts-heading'>
-          <h2>Popular Posts</h2>
+          <h2>Top Posts</h2>
         </div>
         {renderPosts()}
       </div>
