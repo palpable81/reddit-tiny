@@ -1,5 +1,9 @@
 const BASE_URL = 'https://www.reddit.com';
 export const DEFAULT_SUBREDDIT = 'popular';
+export const DEFAULT_SUBREDDIT_OBJ = {
+  displayName: DEFAULT_SUBREDDIT,
+  id: ''
+}
 export const COMMENT_LIMIT = 5;
 
 const isImage = (url) => {
