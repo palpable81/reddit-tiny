@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { DEFAULT_SUBREDDIT } from '../../api/reddit';
 
 const initialState = {
   searchTerm: '',
-  selectedSubreddit: null
+  selectedSubreddit: DEFAULT_SUBREDDIT
 }
 
 const filterSlice = createSlice({
