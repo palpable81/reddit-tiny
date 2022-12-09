@@ -3,7 +3,7 @@
   top: 3rem; /* To offset for fixed header. */
   z-index: 4;
   border-right: 1px solid rgb(187, 187, 187);
-  width: 29%;
+  width: 33%;
   height: calc(100vh - 3rem);
   background-color: white;
   overflow: auto;
@@ -41,8 +41,33 @@
   display: flex;
   align-items: center;
   align-content: center;
-  padding: 0.4rem;
-  width: 12rem;
+  padding: .75rem 0.5rem;
+  width: 13rem;
+  background-color: #FFFFFF;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  margin: 0.5rem 0.5rem;
+}
+
+.subreddit-button:hover {
+  background-color: rgb(249,250,251);
+}
+
+.subreddit-button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.subreddit-button:focus-visible {
+  box-shadow: none;
 }
 
 .subreddit-logo-container {
@@ -64,5 +89,7 @@
 
 .subreddit-text {
   padding: 0 0.5rem;
-  font-weight: bold;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
 }
