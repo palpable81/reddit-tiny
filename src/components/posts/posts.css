@@ -68,13 +68,13 @@
 }
 
 .post-subreddit-logo-container {
-  height: 30px;
-  width: 30px;
+  height: 1.875rem;
+  width: 1.875rem;
 }
 
 .post-subreddit-logo-container img {
-  height: 30px;
-  width: 30px;
+  max-width: 100%;
+  height: auto;
   border-radius: 50%;
   border: 1px black solid;
 }
