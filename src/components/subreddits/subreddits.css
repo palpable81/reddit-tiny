@@ -55,6 +55,7 @@
   user-select: none;
   touch-action: manipulation;
   margin: 0.5rem 0.5rem;
+  font-family: 'Montserrat', serif;
 }
 
 .subreddit-button:hover {
@@ -89,7 +90,7 @@
 
 .subreddit-text {
   padding: 0 0.5rem;
-  font-size: .875rem;
-  font-weight: 600;
+  font-size: .8rem;
+  font-weight: bold;
   line-height: 1.25rem;
 }
