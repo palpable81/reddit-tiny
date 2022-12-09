@@ -3,6 +3,23 @@
   font-size: 0.8rem;
   background-color: rgb(231, 231, 231);
   box-sizing: border-box;
+  width: 100%;
+}
+
+.posts-heading {
+  padding: 1.2rem 0.5rem;
+  text-align: center;
+}
+
+.posts-heading h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 640px) {
+  .posts-heading {
+    display: none;
+  }
 }
 
 .no-matches-text {
@@ -12,6 +29,7 @@
 
 .no-matches-text h2 {
   margin: 0;
+  font-size: 1rem;
 }
 
 .post {
@@ -25,7 +43,7 @@
 
 @media only screen and (min-width: 640px) {
   .posts {
-    width: 70%;
+    width: 69%;
   }
 
   .post {

@@ -3,13 +3,7 @@
   top: 3rem; /* To offset for fixed header. */
   display: flex;
   justify-content: end;
-  gap: 4%;
+  min-height: calc(100vh - 3rem);
   background-color: rgb(231, 231, 231);
-}
-
-@media only screen and (min-width: 1024px) {
-  .content {
-    padding-top: 1.5rem;
-  }
 }
 

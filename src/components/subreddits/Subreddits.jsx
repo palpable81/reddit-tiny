@@ -39,7 +39,7 @@ function Subreddits() {
 
   return (
       <div className='subreddits'>
-        <div className='no-matches-text'>
+        <div className='subreddits-heading'>
           <h2>Subreddits</h2>
         </div>
         {renderSubreddits()}
