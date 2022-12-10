@@ -1,10 +1,10 @@
 .subreddits {
   position: fixed;
-  top: 3rem; /* To offset for fixed header. */
+  top: var(--header-height); /* To offset for fixed header. */
   z-index: 4;
-  border-right: 1px solid rgb(187, 187, 187);
-  width: 33%;
-  height: calc(100vh - 3rem);
+  border-right: 1px solid var(--border-dark);
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
   background-color: white;
   overflow: auto;
   font-family: 'Montserrat', serif;
@@ -27,7 +27,7 @@
 }
 
 .subreddit-content {
-  background-color: white;
+  background-color: var(--white);
   display: flex;
   flex-wrap: wrap;
   width: auto;
@@ -40,7 +40,7 @@
   align-content: center;
   padding: .75rem 0.5rem;
   width: 13rem;
-  background-color: #FFFFFF;
+  background-color: var(--white);
   border: 0;
   border-radius: .5rem;
   box-sizing: border-box;
@@ -53,17 +53,17 @@
 }
 
 .subreddit-button.selected {
-  background-color: #304075;
+  background-color: var(--blue);
   color: #FFFFFF;
 
 }
 
 .subreddit-button:hover {
-  background-color: rgb(201, 221, 241);
+  background-color: var(--light-blue);
 }
 
 .subreddit-button.selected:hover {
-  background-color: #304075;
+  background-color: var(--blue);
 }
 
 .subreddit-button:focus {
@@ -84,7 +84,7 @@
   max-width: 100%;
   height: auto;
   border-radius: 50%;
-  border: 1px black solid;
+  border: 1px var(--black) solid;
 }
 
 .subreddit-text-container {

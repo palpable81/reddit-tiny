@@ -1,7 +1,7 @@
 header {
   position: fixed;
   width: 100%;
-  background-color: #304075;
+  background-color: var(--blue);
   z-index: 4;
   display: flex;
   align-items: center;
@@ -24,8 +24,8 @@ header .logo {
 }
 
 .logo-image img {
-  height: 35px;
-  width: 35px;
+  height: 2.25rem;
+  width: 2.25rem;
 }
 
 .logo-text {
@@ -34,14 +34,14 @@ header .logo {
 
 .logo-text span {
   flex: 1;
-  color: #FFFFFF;
+  color: var(--white);
   font-size: 1.5rem;
   font-family: 'Montserrat', sans-serif;
   text-decoration: none;
 }
 
 .logo-text .orange {
-  color: rgb(255, 69, 0);
+  color: var(--orange);
   font-weight:bold;
 }
 
