@@ -16,7 +16,7 @@
   position: relative;
   top: var(--header-height); /* To offset for fixed header. */
   display: flex;
-  justify-content: end;
+  justify-content:flex-end;
   min-height: calc(100vh - var(--header-height));
   background-color: var(--gray);
 }
