@@ -2,11 +2,7 @@ import { useSelector } from 'react-redux';
 import { render, screen} from '@testing-library/react';
 import Comments from './Comments';
 
-afterEach(() => {
-  jest.restoreAllMocks();
-});
-
-//mocking dispatch
+//mocking useSelector
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
