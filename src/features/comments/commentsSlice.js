@@ -12,6 +12,7 @@ const commentsSlice = createSlice({
       state[action.payload.id] = {
         comments: [],
         isLoading: true,
+        isLoaded: false,
         isVisible: true
       }
     },
@@ -19,6 +20,7 @@ const commentsSlice = createSlice({
       state[action.payload.post.id] = {
         comments: action.payload.comments,
         isLoading: false,
+        isLoaded: true,
         isVisible: true
       }
     },
