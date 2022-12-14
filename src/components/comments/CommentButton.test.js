@@ -1,10 +1,18 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { useDispatch } from 'react-redux'; 
+import { fetchComments, toggleComments } from '../../features/comments/commentsSlice';
 import CommentButton from './CommentButton';
+
 
 //mocking dispatch
 jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
+}));
+
+//mocking commentsSlice
+jest.mock("../../features/comments/commentsSlice", () => ({
+  fetchComments: jest.fn(),
+  toggleComments: jest.fn()
 }));
 
 test('button text is "Show" before comments are loaded', () => {
@@ -43,30 +51,26 @@ test('dispatches fetchComments when button clicked if comments not loaded ', () 
   const expectedPost = {test: 'true'};
   const mockDispatchFn = jest.fn();
   useDispatch.mockReturnValue(mockDispatchFn);
+  const mockFetchComments = jest.fn();
+  fetchComments.mockReturnValue(mockFetchComments);
   
-  render(<CommentButton isLoaded='false' post={expectedPost}/>);
+  render(<CommentButton isLoaded={false} post={expectedPost}/>);
   const button = screen.getByRole('button');
   fireEvent.click(button);
 
-  expect(mockDispatchFn).toHaveBeenCalledWith(
-    expect.objectContaining({
-      payload: expectedPost,
-    })
-  );
+  expect(mockDispatchFn).toHaveBeenCalledWith(mockFetchComments);
 });
 
 test('dispatches toggleComments when button clicked if comments are loaded ', () => {
   const expectedPost = {test: 'true'};
   const mockDispatchFn = jest.fn();
   useDispatch.mockReturnValue(mockDispatchFn);
+  const mockToggleComments = jest.fn();
+  toggleComments.mockReturnValue(mockToggleComments);
   
-  render(<CommentButton isLoaded='true' post={expectedPost}/>);
+  render(<CommentButton isLoaded={true} post={expectedPost}/>);
   const button = screen.getByRole('button');
   fireEvent.click(button);
 
-  expect(mockDispatchFn).toHaveBeenCalledWith(
-    expect.objectContaining({
-      payload: expectedPost,
-    })
-  );
+  expect(mockDispatchFn).toHaveBeenCalledWith(mockToggleComments);
 });

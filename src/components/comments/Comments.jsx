@@ -14,11 +14,12 @@ function Comments(props) {
   let isLoaded = false;
   if(commentsEntry) {
     comments = commentsEntry.comments;
-    if(comments.length > 0 && !isLoading) {
-      isLoaded = true;
-    }
+    // if(comments.length > 0 && !isLoading) {
+    //   isLoaded = true;
+    // }
     isVisible = commentsEntry.isVisible;
     isLoading = commentsEntry.isLoading;
+    isLoaded = commentsEntry.isLoaded;
   }
 
   const renderComments = () => {
