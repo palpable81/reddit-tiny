@@ -19,7 +19,7 @@ function Subreddits() {
       //render 20 empty subreddits for skeleton
       const skeletons = [];
       for (let i = 0; i < 20; i++) {
-        skeletons.push(<Subreddit isSkeleton='true' />);
+        skeletons.push(<Subreddit isSkeleton={true} key={i}/>);
       }
       return (
         <div className='subreddit-content'>
