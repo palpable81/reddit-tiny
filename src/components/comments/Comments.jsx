@@ -8,20 +8,14 @@ import CommentButton from './CommentButton';
 function Comments(props) {
 
   let comments = [];
-  let commentsEntry = useSelector(selectComments)[props.post.id];
   let isVisible = false;
   let isLoading = false;
   let isLoaded = false;
   let hasError = false;
+
+  const commentsEntry = useSelector(selectComments)[props.post.id];
   if(commentsEntry) {
-    comments = commentsEntry.comments;
-    // if(comments.length > 0 && !isLoading) {
-    //   isLoaded = true;
-    // }
-    isVisible = commentsEntry.isVisible;
-    isLoading = commentsEntry.isLoading;
-    isLoaded = commentsEntry.isLoaded;
-    hasError = commentsEntry.hasError;
+    ({ comments, isVisible, isLoading, isLoaded, hasError } = commentsEntry);
   }
 
   const renderComments = () => {

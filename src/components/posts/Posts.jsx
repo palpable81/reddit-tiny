@@ -16,7 +16,6 @@ function Posts() {
   let filteredPosts;
   const searchTerm = useSelector(selectSearchTerm);
 
-  //filter posts based on search term
   if(!searchTerm) {
     filteredPosts = posts;
   }
