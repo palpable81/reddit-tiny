@@ -2,7 +2,7 @@ import './posts.css';
 import './posts-skeleton.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectPosts, fetchPosts, selectIsLoading } from '../../features/posts/postsSlice';
+import { selectPosts, fetchPosts, selectIsLoading, selectHasError } from '../../features/posts/postsSlice';
 import { selectSelectedSubreddit, selectSearchTerm } from '../../features/filter/filterSlice';
 import { selectSubreddits } from '../../features/subreddits/subredditsSlice';
 import Post from './Post';
@@ -10,6 +10,7 @@ import Post from './Post';
 function Posts() {
 
   const isLoading = useSelector(selectIsLoading);
+  const hasError = useSelector(selectHasError);
 
   const posts = useSelector(selectPosts);
   let filteredPosts;
@@ -40,7 +41,13 @@ function Posts() {
   }
 
   const renderPosts = () => {
-    if(isLoading) {
+    if(hasError) {
+      return (<div className='no-matches-text'>
+                <h2>Error loading posts</h2>
+              </div>
+      );
+    }
+    else if(isLoading) {
       //render five empty posts for skeleton
       return (
         <div>

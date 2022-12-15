@@ -3,7 +3,8 @@ import { getPosts } from '../../api/reddit.js';
 
 const initialState = {
   posts: [],
-  isLoading: false
+  isLoading: false,
+  hasError: false
 };
 
 const postsSlice = createSlice({
@@ -13,15 +14,21 @@ const postsSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
       state.isLoading = false;
+      state.hasError = false;
     },
     startGetPosts: (state) => {
       state.posts = [];
       state.isLoading = true;
+      state.hasError = false;
+    },
+    errorGetPosts: (state) => {
+      state.isLoading = false;
+      state.hasError = true;
     }
   }
 });
 
-export const { setPosts, startGetPosts } = postsSlice.actions;
+export const { setPosts, startGetPosts, errorGetPosts } = postsSlice.actions;
 
 // Redux Thunk to get posts from a subreddit.
 export const fetchPosts = (subreddit) => async (dispatch) => {
@@ -31,10 +38,12 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
     dispatch(setPosts(posts));
   } catch (error) {
     console.log(error);
+    dispatch(errorGetPosts());
   }
 };
 
 export const selectPosts = (state) => state.posts.posts;
 export const selectIsLoading = (state) => state.posts.isLoading;
+export const selectHasError = (state) => state.posts.hasError;
 
 export default postsSlice.reducer;
