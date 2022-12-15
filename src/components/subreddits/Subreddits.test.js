@@ -23,53 +23,55 @@ jest.mock("./Subreddit", () => (props) => {
   return <mock-subredditComponent />;
 });
 
-test('renders 1 default subreddit and other subreddits if not loading', () => {
-  const selectSubredditsResponse = [{
-    id: 1,
-    displayName: 'a',
-    iconUrl: 'logo.url'
-  }];
+describe('Subreddits', () => {
+  test('renders 1 default subreddit and other subreddits if not loading', () => {
+    const selectSubredditsResponse = [{
+      id: 1,
+      displayName: 'a',
+      iconUrl: 'logo.url'
+    }];
 
-  useDispatch.mockReturnValue(jest.fn());
-  useSelector.mockReturnValueOnce(selectSubredditsResponse)
-    .mockReturnValueOnce(false);
+    useDispatch.mockReturnValue(jest.fn());
+    useSelector.mockReturnValueOnce(selectSubredditsResponse)
+      .mockReturnValueOnce(false);
 
-  render(<Subreddits />);
+    render(<Subreddits />);
 
-  expect(mockSubredditComponent).toHaveBeenCalledTimes(2);
-});
+    expect(mockSubredditComponent).toHaveBeenCalledTimes(2);
+  });
 
-test('renders 20 skeletons if loading', () => {
-  const selectSubredditsResponse = [{
-    id: 1,
-    displayName: 'a',
-    iconUrl: 'logo.url'
-  }];
+  test('renders 20 skeletons if loading', () => {
+    const selectSubredditsResponse = [{
+      id: 1,
+      displayName: 'a',
+      iconUrl: 'logo.url'
+    }];
 
-  useDispatch.mockReturnValue(jest.fn());
-  useSelector.mockReturnValueOnce(selectSubredditsResponse)
-    .mockReturnValueOnce(true);
+    useDispatch.mockReturnValue(jest.fn());
+    useSelector.mockReturnValueOnce(selectSubredditsResponse)
+      .mockReturnValueOnce(true);
 
-  render(<Subreddits />);
+    render(<Subreddits />);
 
-  expect(mockSubredditComponent).toHaveBeenCalledTimes(20);
-});
+    expect(mockSubredditComponent).toHaveBeenCalledTimes(20);
+  });
 
-test('displays error message if loading', () => {
-  const selectSubredditsResponse = [{
-    id: 1,
-    displayName: 'a',
-    iconUrl: 'logo.url'
-  }];
+  test('displays error message if loading', () => {
+    const selectSubredditsResponse = [{
+      id: 1,
+      displayName: 'a',
+      iconUrl: 'logo.url'
+    }];
 
-  useDispatch.mockReturnValue(jest.fn());
-  useSelector.mockReturnValueOnce(selectSubredditsResponse)
-    .mockReturnValueOnce(false)
-    .mockReturnValueOnce(true);
+    useDispatch.mockReturnValue(jest.fn());
+    useSelector.mockReturnValueOnce(selectSubredditsResponse)
+      .mockReturnValueOnce(false)
+      .mockReturnValueOnce(true);
 
-  render(<Subreddits />);
+    render(<Subreddits />);
 
-  expect(mockSubredditComponent).toHaveBeenCalledTimes(0);
-  const errorMessage = screen.getByText('Error loading subreddits');
-  expect(errorMessage).toBeInTheDocument();
+    expect(mockSubredditComponent).toHaveBeenCalledTimes(0);
+    const errorMessage = screen.getByText('Error loading subreddits');
+    expect(errorMessage).toBeInTheDocument();
+  });
 });

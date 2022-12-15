@@ -123,120 +123,122 @@ beforeEach(() => {
   fetch.resetMocks();
 });
 
-test('fetches posts from subreddit', async () => {
-  const subreddit = 'CFB';
-  fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
+describe('reddit', () => {
+  test('fetches posts from subreddit', async () => {
+    const subreddit = 'CFB';
+    fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
 
-  const actual = await getPosts(subreddit);
+    const actual = await getPosts(subreddit);
 
-  expect(actual.length).toBe(2);
-  expect(fetch).toHaveBeenCalledWith(
-    expect.stringContaining(subreddit)
-  );
-});
+    expect(actual.length).toBe(2);
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining(subreddit)
+    );
+  });
 
-test('fetches posts from default', async () => {
-  const subreddit = '';
-  fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
+  test('fetches posts from default', async () => {
+    const subreddit = '';
+    fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
 
-  const actual = await getPosts(subreddit);
+    const actual = await getPosts(subreddit);
 
-  expect(actual.length).toBe(2);
-  expect(fetch).toHaveBeenCalledWith(
-    expect.stringContaining(DEFAULT_SUBREDDIT)
-  );
-});
+    expect(actual.length).toBe(2);
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining(DEFAULT_SUBREDDIT)
+    );
+  });
 
-test('throws error when posts response not ok', async () => {
-  const subreddit = 'CFB';
-  fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse), { status: 400 });
+  test('throws error when posts response not ok', async () => {
+    const subreddit = 'CFB';
+    fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse), { status: 400 });
 
-  await expect(getPosts(subreddit)).rejects.toEqual(Error('Response was not ok'));
-});
+    await expect(getPosts(subreddit)).rejects.toEqual(Error('Response was not ok'));
+  });
 
-test('throws error when posts response malformed', async () => {
-  const subreddit = 'CFB';
-  fetch.mockResponseOnce(JSON.stringify({}));
+  test('throws error when posts response malformed', async () => {
+    const subreddit = 'CFB';
+    fetch.mockResponseOnce(JSON.stringify({}));
 
-  await expect(getPosts(subreddit)).rejects.toThrow();
-});
+    await expect(getPosts(subreddit)).rejects.toThrow();
+  });
 
-test('fetches subreddits', async () => {
-  fetch.mockResponseOnce(JSON.stringify(mockFetchSubredditsResponse));
+  test('fetches subreddits', async () => {
+    fetch.mockResponseOnce(JSON.stringify(mockFetchSubredditsResponse));
 
-  const actual = await getSubreddits();
+    const actual = await getSubreddits();
 
-  expect(actual.length).toBe(2);
-});
+    expect(actual.length).toBe(2);
+  });
 
-test('throws error when subreddits response not ok', async () => {
-  fetch.mockResponseOnce(JSON.stringify(mockFetchSubredditsResponse), { status: 400 });
+  test('throws error when subreddits response not ok', async () => {
+    fetch.mockResponseOnce(JSON.stringify(mockFetchSubredditsResponse), { status: 400 });
 
-  await expect(getSubreddits()).rejects.toEqual(Error('Response was not ok'));
-});
+    await expect(getSubreddits()).rejects.toEqual(Error('Response was not ok'));
+  });
 
-test('throws error when subreddits response malformed', async () => {
-  fetch.mockResponseOnce(JSON.stringify({}));
+  test('throws error when subreddits response malformed', async () => {
+    fetch.mockResponseOnce(JSON.stringify({}));
 
-  await expect(getSubreddits()).rejects.toThrow();
-});
+    await expect(getSubreddits()).rejects.toThrow();
+  });
 
-test('fetches 1 comment', async () => {
-  const postId = 'jk34j5';
-  const postPermalink = 'permalink';
-  const arg = {
-    id: postId,
-    permalink: postPermalink
-  };
-  fetch.mockResponseOnce(JSON.stringify(mockFetch1CommentResponse));
+  test('fetches 1 comment', async () => {
+    const postId = 'jk34j5';
+    const postPermalink = 'permalink';
+    const arg = {
+      id: postId,
+      permalink: postPermalink
+    };
+    fetch.mockResponseOnce(JSON.stringify(mockFetch1CommentResponse));
 
-  const actual = await getComments(arg);
+    const actual = await getComments(arg);
 
-  expect(actual.length).toBe(1);
-  expect(actual[0].postId).toBe(postId);
-  expect(fetch).toHaveBeenCalledWith(
-    expect.stringContaining(postPermalink)
-  );
-});
+    expect(actual.length).toBe(1);
+    expect(actual[0].postId).toBe(postId);
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining(postPermalink)
+    );
+  });
 
-test('fetches comments up to limit only', async () => {
-  const postId = 'jk34j5';
-  const postPermalink = 'permalink';
-  const arg = {
-    id: postId,
-    permalink: postPermalink
-  };
-  fetch.mockResponseOnce(JSON.stringify(mockFetch6CommentsResponse));
+  test('fetches comments up to limit only', async () => {
+    const postId = 'jk34j5';
+    const postPermalink = 'permalink';
+    const arg = {
+      id: postId,
+      permalink: postPermalink
+    };
+    fetch.mockResponseOnce(JSON.stringify(mockFetch6CommentsResponse));
 
-  const actual = await getComments(arg);
+    const actual = await getComments(arg);
 
-  expect(actual.length).toBe(COMMENT_LIMIT);
-  expect(actual[0].postId).toBe(postId);
-  expect(fetch).toHaveBeenCalledWith(
-    expect.stringContaining(postPermalink)
-  );
-});
+    expect(actual.length).toBe(COMMENT_LIMIT);
+    expect(actual[0].postId).toBe(postId);
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining(postPermalink)
+    );
+  });
 
-test('throws error when comments response not ok', async () => {
-  const postId = 'jk34j5';
-  const postPermalink = 'permalink';
-  const arg = {
-    id: postId,
-    permalink: postPermalink
-  };
-  fetch.mockResponseOnce(JSON.stringify(mockFetch6CommentsResponse), { status: 400 });
+  test('throws error when comments response not ok', async () => {
+    const postId = 'jk34j5';
+    const postPermalink = 'permalink';
+    const arg = {
+      id: postId,
+      permalink: postPermalink
+    };
+    fetch.mockResponseOnce(JSON.stringify(mockFetch6CommentsResponse), { status: 400 });
 
-  await expect(getComments(arg)).rejects.toEqual(Error('Response was not ok'));
-});
+    await expect(getComments(arg)).rejects.toEqual(Error('Response was not ok'));
+  });
 
-test('throws error when comments response malformed', async () => {
-  const postId = 'jk34j5';
-  const postPermalink = 'permalink';
-  const arg = {
-    id: postId,
-    permalink: postPermalink
-  };
-  fetch.mockResponseOnce(JSON.stringify({}));
+  test('throws error when comments response malformed', async () => {
+    const postId = 'jk34j5';
+    const postPermalink = 'permalink';
+    const arg = {
+      id: postId,
+      permalink: postPermalink
+    };
+    fetch.mockResponseOnce(JSON.stringify({}));
 
-  await expect(getComments(arg)).rejects.toThrow();
+    await expect(getComments(arg)).rejects.toThrow();
+  });
 });

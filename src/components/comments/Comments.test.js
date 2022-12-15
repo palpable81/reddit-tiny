@@ -21,103 +21,105 @@ jest.mock("./Comment", () => (props) => {
   return <mock-commentComponent />;
 });
 
-test('renders button with no comments if no comments in store', () => {
-  const postId = '1';
-  const comments = {
-  };
-  const post = {
-    id: postId
-  };
-  useSelector.mockReturnValue(comments);
+describe('Comments', () => {
+  test('renders button with no comments if no comments in store', () => {
+    const postId = '1';
+    const comments = {
+    };
+    const post = {
+      id: postId
+    };
+    useSelector.mockReturnValue(comments);
 
-  render(<Comments post={post}/>);
+    render(<Comments post={post}/>);
 
-  expect(mockCommentButtonComponent).toHaveBeenCalledWith(
-    expect.objectContaining({
-      post: post,
-      isVisible: false,
-      isLoading: false
-    })
-  );
-  expect(mockCommentComponent).not.toHaveBeenCalled();
-});
+    expect(mockCommentButtonComponent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        post: post,
+        isVisible: false,
+        isLoading: false
+      })
+    );
+    expect(mockCommentComponent).not.toHaveBeenCalled();
+  });
 
-test('renders button with comments if comments in store', () => {
-  const postId = '1';
-  const expectedIsVisible = true;
-  const expectedIsLoading = false;
-  const comments = {
-    [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
-                isVisible: expectedIsVisible,
-                isLoading: expectedIsLoading}
-  };
-  const post = {
-    id: postId
-  };
-  useSelector.mockReturnValue(comments);
+  test('renders button with comments if comments in store', () => {
+    const postId = '1';
+    const expectedIsVisible = true;
+    const expectedIsLoading = false;
+    const comments = {
+      [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
+                  isVisible: expectedIsVisible,
+                  isLoading: expectedIsLoading}
+    };
+    const post = {
+      id: postId
+    };
+    useSelector.mockReturnValue(comments);
 
-  render(<Comments post={post}/>);
+    render(<Comments post={post}/>);
 
-  expect(mockCommentButtonComponent).toHaveBeenCalledWith(
-    expect.objectContaining({
-      post: post,
-      isVisible: expectedIsVisible,
-      isLoading: expectedIsLoading,
-    })
-  );
-  expect(mockCommentComponent).toHaveBeenCalledTimes(2);
-});
+    expect(mockCommentButtonComponent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        post: post,
+        isVisible: expectedIsVisible,
+        isLoading: expectedIsLoading,
+      })
+    );
+    expect(mockCommentComponent).toHaveBeenCalledTimes(2);
+  });
 
-test('renders button with skeleton comments if comments loading', () => {
-  const postId = '1';
-  const expectedIsVisible = true;
-  const expectedIsLoading = true;
-  const comments = {
-    [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
-                isVisible: expectedIsVisible,
-                isLoading: expectedIsLoading}
-  };
-  const post = {
-    id: postId
-  };
-  useSelector.mockReturnValue(comments);
+  test('renders button with skeleton comments if comments loading', () => {
+    const postId = '1';
+    const expectedIsVisible = true;
+    const expectedIsLoading = true;
+    const comments = {
+      [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
+                  isVisible: expectedIsVisible,
+                  isLoading: expectedIsLoading}
+    };
+    const post = {
+      id: postId
+    };
+    useSelector.mockReturnValue(comments);
 
-  render(<Comments post={post}/>);
+    render(<Comments post={post}/>);
 
-  expect(mockCommentButtonComponent).toHaveBeenCalledWith(
-    expect.objectContaining({
-      post: post,
-      isVisible: expectedIsVisible,
-      isLoading: expectedIsLoading,
-    })
-  );
-  expect(mockCommentComponent).toHaveBeenCalledTimes(5);
-  expect(mockCommentComponent).toHaveBeenLastCalledWith(
-    expect.objectContaining({
-      isSkeleton: true,
-    })
-  )
-});
+    expect(mockCommentButtonComponent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        post: post,
+        isVisible: expectedIsVisible,
+        isLoading: expectedIsLoading,
+      })
+    );
+    expect(mockCommentComponent).toHaveBeenCalledTimes(5);
+    expect(mockCommentComponent).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        isSkeleton: true,
+      })
+    )
+  });
 
-test('displays error message if hasError is true', () => {
-  const postId = '1';
-  const expectedIsVisible = true;
-  const expectedIsLoading = false;
-  const expectedHasError = true;
-  const comments = {
-    [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
-                isVisible: expectedIsVisible,
-                isLoading: expectedIsLoading,
-                hasError: expectedHasError}
-  };
-  const post = {
-    id: postId
-  };
-  useSelector.mockReturnValue(comments);
+  test('displays error message if hasError is true', () => {
+    const postId = '1';
+    const expectedIsVisible = true;
+    const expectedIsLoading = false;
+    const expectedHasError = true;
+    const comments = {
+      [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
+                  isVisible: expectedIsVisible,
+                  isLoading: expectedIsLoading,
+                  hasError: expectedHasError}
+    };
+    const post = {
+      id: postId
+    };
+    useSelector.mockReturnValue(comments);
 
-  render(<Comments post={post}/>);
+    render(<Comments post={post}/>);
 
-  expect(mockCommentComponent).toHaveBeenCalledTimes(0);
-  const errorMessage = screen.getByText('Error loading comments');
-  expect(errorMessage).toBeInTheDocument();
+    expect(mockCommentComponent).toHaveBeenCalledTimes(0);
+    const errorMessage = screen.getByText('Error loading comments');
+    expect(errorMessage).toBeInTheDocument();
+  });
 });
