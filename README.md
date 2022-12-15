@@ -1,13 +1,14 @@
 <!-- ABOUT THE PROJECT -->
 ## Tiny Reddit
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://timely-taiyaki-2805b5.netlify.app/)
 
-Tiny Reddit is a React app which uses Reddit's API to create a simple, fast-loading Reddit client with minimal features.
+Tiny Reddit is a simple, fast-loading Reddit client with minimal features, based on React.
 
 * See top posts in most popular subreddits
 * See top comments in those posts
 * Filter posts based on subreddit or keyword
+* Responsive sizing so app can be used on mobile, tablet, and desktop
 
 ### Built With
 
