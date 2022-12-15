@@ -13,7 +13,8 @@ const commentsSlice = createSlice({
         comments: [],
         isLoading: true,
         isLoaded: false,
-        isVisible: true
+        isVisible: true,
+        hasError: false
       }
     },
     addCommentsSuccess: (state, action) => {
@@ -21,7 +22,16 @@ const commentsSlice = createSlice({
         comments: action.payload.comments,
         isLoading: false,
         isLoaded: true,
-        isVisible: true
+        isVisible: true,
+        hasError: false
+      }
+    },
+    errorAddComments: (state, action) => {
+      state[action.payload.id] = {
+        isLoading: false,
+        isLoaded: false,
+        isVisible: true,
+        hasError: true
       }
     },
     toggleComments: (state, action) => {
@@ -33,7 +43,7 @@ const commentsSlice = createSlice({
   }
 });
 
-export const { startAddComments, addCommentsSuccess, toggleComments } = commentsSlice.actions;
+export const { startAddComments, addCommentsSuccess, errorAddComments, toggleComments } = commentsSlice.actions;
 
 // Redux Thunk to get comments from a post
 export const fetchComments = (post) => async (dispatch) => {
@@ -44,7 +54,7 @@ export const fetchComments = (post) => async (dispatch) => {
 
     dispatch(addCommentsSuccess({post: post, comments: comments}));
   } catch (error) {
-    console.log(error);
+    dispatch(errorAddComments(post));
   }
 };
 

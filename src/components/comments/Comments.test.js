@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'; 
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Comments from './Comments';
 
 //mocking useSelector
@@ -97,4 +97,27 @@ test('renders button with skeleton comments if comments loading', () => {
       isSkeleton: true,
     })
   )
+});
+
+test('displays error message if hasError is true', () => {
+  const postId = '1';
+  const expectedIsVisible = true;
+  const expectedIsLoading = false;
+  const expectedHasError = true;
+  const comments = {
+    [postId]: {comments: [{id: 1, author: 'a', body: 'b'}, {id: 2, author: 'c', body: 'd'}],
+                isVisible: expectedIsVisible,
+                isLoading: expectedIsLoading,
+                hasError: expectedHasError}
+  };
+  const post = {
+    id: postId
+  };
+  useSelector.mockReturnValue(comments);
+
+  render(<Comments post={post}/>);
+
+  expect(mockCommentComponent).toHaveBeenCalledTimes(0);
+  const errorMessage = screen.getByText('Error loading comments');
+  expect(errorMessage).toBeInTheDocument();
 });

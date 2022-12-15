@@ -12,6 +12,7 @@ function Comments(props) {
   let isVisible = false;
   let isLoading = false;
   let isLoaded = false;
+  let hasError = false;
   if(commentsEntry) {
     comments = commentsEntry.comments;
     // if(comments.length > 0 && !isLoading) {
@@ -20,10 +21,17 @@ function Comments(props) {
     isVisible = commentsEntry.isVisible;
     isLoading = commentsEntry.isLoading;
     isLoaded = commentsEntry.isLoaded;
+    hasError = commentsEntry.hasError;
   }
 
   const renderComments = () => {
-    if(isLoading) {
+    if(hasError) {
+      return (<div className='error-message-text'>
+                <h2>Error loading comments</h2>
+              </div>
+      );
+    }
+    else if(isLoading) {
       //render five empty comments for skeleton
       return (
         <div>
