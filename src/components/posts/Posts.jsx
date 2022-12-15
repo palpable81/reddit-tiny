@@ -42,7 +42,7 @@ function Posts() {
 
   const renderPosts = () => {
     if(hasError) {
-      return (<div className='no-matches-text'>
+      return (<div className='error-message-text'>
                 <h2>Error loading posts</h2>
               </div>
       );
@@ -60,7 +60,7 @@ function Posts() {
       )
     }
     else if(filteredPosts.length === 0) {
-      return (<div className='no-matches-text'>
+      return (<div className='error-message-text'>
                 <h2>No matching posts</h2>
               </div>
       );
