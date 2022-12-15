@@ -3,7 +3,8 @@ import { getSubreddits } from '../../api/reddit.js';
 
 const initialState = {
   subreddits: [],
-  isLoading: false
+  isLoading: false,
+  hasError: false
 };
 
 const subredditsSlice = createSlice({
@@ -12,15 +13,21 @@ const subredditsSlice = createSlice({
   reducers: {
     startGetSubreddits: (state) => {
       state.isLoading = true;
+      state.hasError = false;
     },
     setSubreddits: (state, action) => {
       state.subreddits = action.payload;
       state.isLoading = false;
+      state.hasError = false;
     },
+    errorGetSubreddits: (state) => {
+      state.isLoading = false;
+      state.hasError = true;
+    }
   }
 });
 
-export const { startGetSubreddits, setSubreddits } = subredditsSlice.actions;
+export const { startGetSubreddits, setSubreddits, errorGetSubreddits } = subredditsSlice.actions;
 
 // Redux Thunk to get subreddits.
 export const fetchSubreddits = () => async (dispatch) => {
@@ -29,11 +36,12 @@ export const fetchSubreddits = () => async (dispatch) => {
     const subreddits = await getSubreddits();
     dispatch(setSubreddits(subreddits));
   } catch (error) {
-    console.log(error);
+    dispatch(errorGetSubreddits());
   }
 };
 
 export const selectSubreddits = (state) => state.subreddits.subreddits;
 export const selectIsLoading = (state) => state.subreddits.isLoading;
+export const selectHasError = (state) => state.subreddits.hasError;
 
 export default subredditsSlice.reducer;

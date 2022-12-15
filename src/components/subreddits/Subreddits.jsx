@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSubreddits, selectIsLoading, fetchSubreddits } from '../../features/subreddits/subredditsSlice';
+import { selectSubreddits, selectIsLoading, selectHasError, fetchSubreddits } from '../../features/subreddits/subredditsSlice';
 import { DEFAULT_SUBREDDIT_OBJ } from '../../api/reddit';
 import Subreddit from './Subreddit';
 
@@ -8,6 +8,7 @@ function Subreddits() {
 
   const subreddits = useSelector(selectSubreddits);
   const isLoading = useSelector(selectIsLoading);
+  const hasError = useSelector(selectHasError);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +16,13 @@ function Subreddits() {
   }, [dispatch]);
 
   const renderSubreddits = () => {
-    if(isLoading) {
+    if(hasError) {
+      return (<div className='error-message-text'>
+                <h2>Error loading subreddits</h2>
+              </div>
+      );
+    }
+    else if(isLoading) {
       //render 20 empty subreddits for skeleton
       const skeletons = [];
       for (let i = 0; i < 20; i++) {

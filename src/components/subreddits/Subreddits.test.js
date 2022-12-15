@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { useSelector, useDispatch, useEffect } from 'react-redux'; 
-import { selectSubreddits, selectIsLoading, fetchSubreddits } from '../../features/subreddits/subredditsSlice';
+import { useSelector, useDispatch } from 'react-redux'; 
 import Subreddits from './Subreddits';
 
 //mocking useSelector, useDispatch
@@ -13,6 +12,7 @@ jest.mock('react-redux', () => ({
 jest.mock('../../features/subreddits/subredditsSlice', () => ({
   selectSubreddits: jest.fn(),
   selectIsLoading: jest.fn(),
+  seelctHasError: jest.fn(),
   fetchSubreddits: jest.fn()
 }));
 
@@ -53,4 +53,23 @@ test('renders 20 skeletons if loading', () => {
   render(<Subreddits />);
 
   expect(mockSubredditComponent).toHaveBeenCalledTimes(20);
+});
+
+test('displays error message if loading', () => {
+  const selectSubredditsResponse = [{
+    id: 1,
+    displayName: 'a',
+    iconUrl: 'logo.url'
+  }];
+
+  useDispatch.mockReturnValue(jest.fn());
+  useSelector.mockReturnValueOnce(selectSubredditsResponse)
+    .mockReturnValueOnce(false)
+    .mockReturnValueOnce(true);
+
+  render(<Subreddits />);
+
+  expect(mockSubredditComponent).toHaveBeenCalledTimes(0);
+  const errorMessage = screen.getByText('Error loading subreddits');
+  expect(errorMessage).toBeInTheDocument();
 });
