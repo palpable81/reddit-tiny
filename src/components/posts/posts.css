@@ -57,7 +57,7 @@
   align-items: center;
   align-content: center;
   justify-content: space-between;
-  padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+  padding: 0.5rem 0.7rem 0.2rem 0.7rem;
 }
 
 .post-subreddit-container {
@@ -101,7 +101,7 @@
   font-size: 1.25rem;
   font-family: 'Lora', serif;
   text-align: left;
-  padding: 0.3rem 0.5rem 0;
+  padding: 0.3rem 0.7rem 0;
 }
 
 .post-image-container {
