@@ -124,7 +124,7 @@ beforeEach(() => {
 });
 
 describe('reddit', () => {
-  test('fetches posts from subreddit', async () => {
+  test('fetches posts from subreddit sorted by karma', async () => {
     const subreddit = 'CFB';
     fetch.mockResponseOnce(JSON.stringify(mockFetchPostsResponse));
 
@@ -134,6 +134,8 @@ describe('reddit', () => {
     expect(fetch).toHaveBeenCalledWith(
       expect.stringContaining(subreddit)
     );
+    expect(actual[0].karma).toBe(mockFetchPostsResponse.data.children[1].data.score);
+    expect(actual[1].karma).toBe(mockFetchPostsResponse.data.children[0].data.score);
   });
 
   test('fetches posts from default', async () => {

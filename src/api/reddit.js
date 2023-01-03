@@ -11,6 +11,10 @@ const isImage = (url) => {
   return url.match(regex) ? true : false;
 }
 
+const sortByKarma = (a, b) => {
+  return b.karma - a.karma; //sort descending
+}
+
 export const getPosts = async (subreddit) => {
 
   //use default if no subreddit provided
@@ -33,7 +37,7 @@ export const getPosts = async (subreddit) => {
         isImage: isImage(post.data.url),
         url: post.data.url,
         permalink: post.data.permalink
-      }));
+      })).sort(sortByKarma);
     }
     else {
       throw new Error('Response was not ok');
