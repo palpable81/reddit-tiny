@@ -35,9 +35,8 @@ function Post(props) {
                   <Skeleton className='skeleton-post-subreddit-logo' /> }
               </div>
               <div className='post-subreddit-author-container'>
-                <span className='post-subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-post-subreddit' />}</span>
-                {!isSkeleton && '●' }
-                <span className='post-author-text'>{!isSkeleton ? 'u/'+post.author : <Skeleton className='skeleton-author' />}</span>
+                <div className='post-subreddit-text'>{!isSkeleton ? 'r/'+post.subreddit : <Skeleton className='skeleton-post-subreddit' />}</div>
+                <div className='post-author-text'>{!isSkeleton ? 'u/'+post.author : <Skeleton className='skeleton-author' />}</div>
               </div>
             </div>
             <div className='post-karma-text'>
